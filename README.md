@@ -55,7 +55,7 @@ storytelling-with-data/
 ├── narrativa_datos/            # Módulo principal
 │   ├── __init__.py             # Fachada principal NarrativaDatos
 │   ├── config.py               # Constantes Gestalt, gráficos, colores y configuraciones
-│   ├── contexto.py             # Análisis de contexto y受众 (audiencia)
+│   ├── contexto.py             # Análisis de contexto y audiencia
 │   ├── seleccionador_grafico.py # Árbol de decisión para selección de gráficos
 │   ├── depurador_ruido.py      # Detección de ruido visual y carga cognitiva
 │   ├── atencion.py             # Planificación de atributos preatentivos
@@ -90,7 +90,7 @@ print(reporte_grafico)
 
 ## Las 8 Capacidades Explicadas
 
-1.  **Análisis de Contexto**: Identificar quién es tu受众 (audiencia) principal, el tomador de decisiones clave y redactar la Idea Fuerza (Big Idea) que resuma tu tesis en una sola frase con intereses claros.
+1.  **Análisis de Contexto**: Identificar quién es tu audiencia principal, el tomador de decisiones clave y redactar la Idea Fuerza (Big Idea) que resuma tu tesis en una sola frase con intereses claros.
 2.  **Selección de Gráficos**: Recomendar la visualización idónea evitando gráficos problemáticos como circulares (tartas), donas, 3D o doble eje Y.
 3.  **Depuración de Ruido**: Remover ruido visual (bordes, cuadrículas, ceros flotantes) que consume capacidad cognitiva del receptor.
 4.  **Dirección de la Atención**: Planificar el uso de color selectivo (base gris y un único color destacado) y variaciones de tamaño de texto.

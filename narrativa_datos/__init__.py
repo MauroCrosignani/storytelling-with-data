@@ -44,7 +44,7 @@ class NarrativaDatos:
         riesgos: Optional[List[str]] = None,
         **_kwargs: Any,
     ) -> str:
-        """Crea el contexto de comunicación del proyecto (受众/Big Idea/Llamado a la acción)."""
+        """Crea el contexto de comunicación del proyecto (Audiencia/Idea Fuerza/Llamado a la acción)."""
         creador = CreadorContexto(self.titulo)
         if audiencia:
             creador.establecer_audiencia(audiencia)
