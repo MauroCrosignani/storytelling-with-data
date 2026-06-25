@@ -11,6 +11,7 @@ Este proyecto es una biblioteca de Python y una habilidad de agente de IA diseñ
 - [Instalación](#instalación)
 - [Estructura del Proyecto](#estructura-del-proyecto)
 - [Uso Básico](#uso-básico)
+- [Ejemplo de Uso Completo](#ejemplo-de-uso-completo)
 - [Las 8 Capacidades Explicadas](#las-8-capacidades-explicadas)
 - [Licencia](#licencia)
 
@@ -84,6 +85,65 @@ reporte_grafico = proyecto.recomendar_grafico(
     cantidad_series=2
 )
 print(reporte_grafico)
+```
+
+---
+
+## Ejemplo de Uso Completo
+
+A continuación se muestra un ejemplo exhaustivo de cómo utilizar todas las capacidades de la biblioteca en un flujo de trabajo típico de *Storytelling with Data*:
+
+```python
+from narrativa_datos import NarrativaDatos
+
+# Inicialización con el nombre de tu proyecto
+proyecto = NarrativaDatos("Estudio de Retención")
+
+# 1. Definir el contexto de la comunicación
+contexto = proyecto.crear_contexto(
+    audiencia="Comité Ejecutivo",
+    llamado_accion="Aprobar presupuesto de soporte"
+)
+
+# 2. Recomendar el gráfico ideal
+grafico = proyecto.recomendar_grafico(
+    tipo_datos="continuo", 
+    tiene_tiempo=True, 
+    cantidad_series=2
+)
+
+# 3. Diagnosticar ruido visual (Bordes, cuadrículas de fondo, 3D, etc.)
+ruido = proyecto.diagnosticar_ruido(
+    tiene_cuadriculas=True, 
+    tiene_bordes=True
+)
+
+# 4. Planificar atención visual
+atencion = proyecto.planificar_atencion(
+    elementos_enfoque=[("Línea de pérdidas", 5)]
+)
+
+# 5. Evaluar la accesibilidad y estética del diseño
+evaluacion = proyecto.evaluar_diseno(
+    tiene_titulo=True, 
+    color_estrategico=True
+)
+
+# 6. Construir el arco narrativo en 3 actos (Inicio, Nudo, Desenlace)
+historia = proyecto.construir_historia(
+    protagonista="Equipo de Soporte",
+    desequilibrio="La pérdida de clientes creció un 20% este mes"
+)
+
+# 7. Diagnóstico cuantitativo de 5 dimensiones (escala 0-100)
+diagnostico = proyecto.diagnostico_completo(calificaciones={
+    "contexto": {"audiencia_clara": 5, "accion_clara": 4}
+})
+
+# 8. Obtener guía paso a paso de rediseño (Makeover)
+rediseño = proyecto.rediseñar_grafico(
+    problemas=["Gráfico circular con 8 sectores", "Colores muy llamativos"]
+)
 ```
 
 ---
