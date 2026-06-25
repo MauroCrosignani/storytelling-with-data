@@ -101,5 +101,13 @@ print(reporte_grafico)
 
 ---
 
+## Uso con Asistentes de IA (Copilot, ChatGPT, Claude)
+
+Puedes utilizar el archivo unificado [contexto_completo.txt](texto/contexto_completo.txt) para proporcionar a un asistente de IA todo el contexto de esta biblioteca. A continuación se presenta un ejemplo de instrucción (prompt) en español para iniciar una consultoría guiada por los principios de *Storytelling with Data*:
+
+> *Actúa como un consultor experto en Storytelling with Data (SWD). Adjunto el código fuente y las directrices de mi proyecto en español (`narrativa_datos`). Quiero que me hagas una entrevista interactiva, pregunta por pregunta, para extraer los detalles de mi caso de negocio actual (audiencia, Idea Fuerza, conflicto, datos de soporte, etc.). Basándote en mis respuestas y aplicando estrictamente las reglas definidas en el código de este contexto, guíame para generar el reporte de contexto y el arco narrativo final de mi presentación.*
+
+---
+
 ## Licencia
 Este proyecto está licenciado bajo la Licencia MIT.
