@@ -1,0 +1,2745 @@
+=========================================================================
+ CONTEXTO COMPLETO DEL PROYECTO: NARRATIVA CON DATOS (SWD EN ESPAÑOL)
+=========================================================================
+
+=========================================================================
+ INICIO DE ARCHIVO: pyproject.toml
+=========================================================================
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "narrativa-datos"
+version = "1.0.0"
+description = "Herramientas de Narrativa con Datos — Visualización y narrativa profesional basada en Cole Nussbaumer Knaflic"
+readme = "README.md"
+requires-python = ">=3.12"
+license = {text = "MIT"}
+authors = [{name = "Antigravity"}]
+keywords = ["visualizacion-datos", "narrativa-datos", "storytelling", "diseño-graficos"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = []
+
+[project.optional-dependencies]
+desarrollo = [
+    "pytest>=9.0.0",
+    "ruff>=0.3.0",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["narrativa_datos"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+
+=========================================================================
+ FIN DE ARCHIVO: pyproject.toml
+=========================================================================
+
+
+=========================================================================
+ INICIO DE ARCHIVO: README.md
+=========================================================================
+# Narrativa con Datos (Storytelling with Data) en Español
+
+> **Transforma datos en decisiones. Transforma gráficos en historias.**
+
+Este proyecto es una biblioteca de Python y una habilidad de agente de IA diseñada al 100% en español. Recrea los principios fundamentales expuestos por Cole Nussbaumer Knaflic en su libro *Storytelling with Data*, proporcionando herramientas analíticas para estructurar, auditar y rediseñar visualizaciones de datos para entornos ejecutivos.
+
+---
+
+## 📑 Tabla de Contenidos
+- [Características](#características)
+- [Instalación](#instalación)
+- [Estructura del Proyecto](#estructura-del-proyecto)
+- [Uso Básico](#uso-básico)
+- [Las 8 Capacidades Explicadas](#las-8-capacidades-explicadas)
+- [Licencia](#licencia)
+
+---
+
+## Características
+*   **Cero dependencias de ejecución**: Escrita utilizando únicamente la biblioteca estándar de Python, haciéndola segura, ligera y libre de vulnerabilidades externas.
+*   **100% en Español**: Toda la interfaz pública, reportes de salida, diagnósticos, constantes, excepciones y documentación están exclusivamente en idioma español.
+*   **Enfoque en Seguridad**: Remueve cualquier tipo de enlaces externos, dependencias desactualizadas o accesos no declarados.
+*   **Fachada Unificada**: Ofrece acceso simple a todo el flujo de trabajo mediante la clase unificada `NarrativaDatos`.
+
+---
+
+## Instalación
+Para instalar la biblioteca en modo editable en un entorno virtual de desarrollo:
+
+```bash
+# Crear entorno virtual si no existe
+python -m venv .venv
+
+# Activar entorno virtual
+# En Windows (PowerShell):
+.\.venv\Scripts\Activate.ps1
+
+# Instalar dependencias de desarrollo y empaquetar localmente
+python -m pip install -e ".[desarrollo]"
+```
+
+Para ejecutar la suite de pruebas unitarias:
+```bash
+python -m pytest tests/ -v
+```
+
+---
+
+## Estructura del Proyecto
+```
+storytelling-with-data/
+├── pyproject.toml              # Definición de empaquetado seguro con Hatchling
+├── README.md                   # Documentación en español (este archivo)
+├── SKILL.md                    # Definición de la habilidad para agentes IA en español
+├── narrativa_datos/            # Módulo principal
+│   ├── __init__.py             # Fachada principal NarrativaDatos
+│   ├── config.py               # Constantes Gestalt, gráficos, colores y configuraciones
+│   ├── contexto.py             # Análisis de contexto y audiencia
+│   ├── seleccionador_grafico.py # Árbol de decisión para selección de gráficos
+│   ├── depurador_ruido.py      # Detección de ruido visual y carga cognitiva
+│   ├── atencion.py             # Planificación de atributos preatentivos
+│   ├── evaluador_diseno.py     # Auditoría de accesibilidad, estética y asequibilidad
+│   ├── narrador.py             # Arco narrativo de tres actos
+│   ├── diagnostico.py          # Motor cuantitativo sobre 100 puntos
+│   ├── redisenador.py          # Guía paso a paso de rediseño (makeover)
+│   └── plantillas.py           # Plantillas Markdown de reportes
+└── tests/                      # Suite de pruebas unitarias
+    └── test_narrativa.py       # Pruebas en español
+```
+
+---
+
+## Uso Básico
+```python
+from narrativa_datos import NarrativaDatos
+
+# Inicializar proyecto
+proyecto = NarrativaDatos("Estudio de Conversión")
+
+# Recomendar un gráfico
+reporte_grafico = proyecto.recomendar_grafico(
+    tipo_datos="continuo", 
+    tiene_tiempo=True, 
+    cantidad_series=2
+)
+print(reporte_grafico)
+```
+
+---
+
+## Las 8 Capacidades Explicadas
+
+1.  **Análisis de Contexto**: Identificar quién es tu audiencia principal, el tomador de decisiones clave y redactar la Idea Fuerza (Big Idea) que resuma tu tesis en una sola frase con intereses claros.
+2.  **Selección de Gráficos**: Recomendar la visualización idónea evitando gráficos problemáticos como circulares (tartas), donas, 3D o doble eje Y.
+3.  **Depuración de Ruido**: Remover ruido visual (bordes, cuadrículas, ceros flotantes) que consume capacidad cognitiva del receptor.
+4.  **Dirección de la Atención**: Planificar el uso de color selectivo (base gris y un único color destacado) y variaciones de tamaño de texto.
+5.  **Pensar como un Diseñador**: Evaluar la legibilidad, la alineación a la izquierda y el uso inteligente del espacio en blanco.
+6.  **Contar una Historia**: Estructurar los datos en un arco de tres actos: Inicio (Contexto/Conflicto), Nudo (Datos/Comparativas) y Desenlace (Acción).
+7.  **Diagnóstico Completo**: Medir cuantitativamente la calidad visual de un gráfico en una escala de 0 a 100 basada en 5 dimensiones.
+8.  **Rediseño de Gráficos**: Generar recetas y pasos incrementales de transformación para reconstruir gráficos mal diseñados.
+
+---
+
+## Licencia
+Este proyecto está licenciado bajo la Licencia MIT.
+
+=========================================================================
+ FIN DE ARCHIVO: README.md
+=========================================================================
+
+
+=========================================================================
+ INICIO DE ARCHIVO: SKILL.md
+=========================================================================
+---
+name: narrativa-datos
+version: "1.0.0"
+description: >
+  Habilidad de Visualización y Narrativa con Datos en español, basada en la
+  metodología de Cole Nussbaumer Knaflic «Storytelling with Data».
+  Permite realizar análisis de contexto, seleccionar el gráfico adecuado,
+  diagnosticar ruido visual, planificar la atención y estructurar historias.
+author: "Antigravity"
+permissions:
+  - read_file: c:/Users/mcros/Documents/storytelling-with-data
+  - write_file: c:/Users/mcros/Documents/storytelling-with-data
+---
+
+# 📖 Habilidad de Narrativa con Datos (`narrativa_datos`)
+
+Esta habilidad ayuda a transformar datos crudos en historias con impacto comercial, aplicando de forma estricta los principios del libro *Storytelling with Data* de Cole Nussbaumer Knaflic.
+
+## 🛠️ Capacidades Principales
+
+La habilidad expone la clase fachada `NarrativaDatos` que proporciona las siguientes 8 funciones:
+
+1. **Creación de Contexto (`crear_contexto`)**:
+   Define con precisión la audiencia principal, el tomador de decisiones, la Idea Fuerza (Big Idea) y la historia de 3 minutos.
+
+2. **Recomendación de Gráfico (`recomendar_grafico`)**:
+   Analiza el perfil físico de los datos (tipo, cantidad de series/categorías, componente temporal, etc.) y sugiere la visualización ideal. También avisa sobre gráficos desaconsejados (ej. circulares, dona, 3D o doble eje Y).
+
+3. **Diagnóstico de Ruido Visual (`diagnosticar_ruido`)**:
+   Evalúa el gráfico en busca de cuadrículas pesadas, bordes innecesarios, leyendas lejanas u otros factores que eleven la carga cognitiva del lector.
+
+4. **Planificación de Atención Visual (`planificar_atencion`)**:
+   Define puntos de enfoque clave mediante el uso selectivo de atributos preatentivos (color, tamaño, negrita) y la estrategia de color base gris.
+
+5. **Evaluación de Diseño (`evaluar_diseno`)**:
+   Evalúa el gráfico en tres dimensiones: asequibilidad, accesibilidad (título de acción, unidades, texto legible) y estética (alineación izquierda, espacios en blanco).
+
+6. **Construcción de Historias (`construir_historia`)**:
+   Estructura la narrativa de datos en el clásico arco de tres actos: Inicio (Contexto/Conflicto), Nudo (Evidencia/Opciones) y Desenlace (Llamado a la acción).
+
+7. **Diagnóstico Completo (`diagnostico_completo`)**:
+   Matriz cuantitativa de 5 dimensiones sobre 100 puntos que evalúa la calidad total de la visualización y propone un plan de acción priorizado.
+
+8. **Rediseño de Gráficos (`rediseñar_grafico`)**:
+   Genera una guía paso a paso de transformación (makeover) partiendo de problemas identificados hacia un diseño final efectivo.
+
+---
+
+## 🚀 Guía de Uso en Python
+
+```python
+from narrativa_datos import NarrativaDatos
+
+# 1. Inicializar la fachada con el título del proyecto
+narrativa = NarrativaDatos("Reporte de Desempeño Anual")
+
+# 2. Recomendar un gráfico según el perfil de datos
+sugerencia = narrativa.recomendar_grafico(
+    tipo_datos="continuo", 
+    tiene_tiempo=True, 
+    cantidad_series=2
+)
+print(sugerencia)
+
+# 3. Diagnosticar ruido visual en un diseño preliminar
+diagnostico_ruido = narrativa.diagnosticar_ruido(
+    tiene_bordes=True, 
+    tiene_cuadriculas=True,
+    tiene_leyenda_separada=True
+)
+print(diagnostico_ruido)
+
+# 4. Estructurar el arco narrativo en tres actos
+historia = narrativa.construir_historia(
+    protagonista="Comité Ejecutivo",
+    desequilibrio="La retención bajó del 85% al 79% por lentitud de soporte",
+    evidencia=["Tiempo de respuesta subió a 48 horas", "NPS bajó a 20 puntos"],
+    llamado_accion="Aprobar contratación de 3 agentes de soporte en Q1"
+)
+print(historia)
+```
+
+=========================================================================
+ FIN DE ARCHIVO: SKILL.md
+=========================================================================
+
+
+=========================================================================
+ INICIO DE ARCHIVO: narrativa_datos/__init__.py
+=========================================================================
+"""Módulo Principal de Narrativa con Datos
+
+Fachada unificada en español para acceder a las 8 capacidades basadas en la metodología
+de Cole Nussbaumer Knaflic «Storytelling with Data».
+"""
+
+from __future__ import annotations
+
+from typing import Any, Dict, List, Optional
+
+from narrativa_datos.contexto import CreadorContexto
+from narrativa_datos.seleccionador_grafico import SeleccionadorGrafico, PerfilDatos
+from narrativa_datos.depurador_ruido import DepuradorRuido
+from narrativa_datos.atencion import AnalizadorAtencion
+from narrativa_datos.narrador import ConstructorHistoria
+from narrativa_datos.diagnostico import MotorDiagnostico
+from narrativa_datos.redisenador import RedisenadorGrafico
+from narrativa_datos.evaluador_diseno import EvaluadorDiseno
+
+__version__ = "1.0.0"
+
+__all__ = ["NarrativaDatos", "__version__"]
+
+
+class NarrativaDatos:
+    """Fachada unificada (Facade) para acceder a las 8 capacidades de la metodología SWD.
+
+    Cada método sirve como envoltura directa sobre los submódulos específicos del dominio,
+    manteniendo la API homogénea, simple y 100% en español.
+    """
+
+    def __init__(self, titulo: str) -> None:
+        self.titulo = titulo
+
+    # ── Capacidad 1: Análisis de Contexto ──
+    def crear_contexto(
+        self,
+        audiencia: str = "",
+        llamado_accion: str = "",
+        idea_fuerza: str = "",
+        historia_tres_minutos: str = "",
+        mecanismo: str = "",
+        datos_soporte: Optional[List[str]] = None,
+        riesgos: Optional[List[str]] = None,
+        **_kwargs: Any,
+    ) -> str:
+        """Crea el contexto de comunicación del proyecto (Audiencia/Idea Fuerza/Llamado a la acción)."""
+        creador = CreadorContexto(self.titulo)
+        if audiencia:
+            creador.establecer_audiencia(audiencia)
+        if llamado_accion:
+            creador.establecer_llamado_accion(llamado_accion)
+        if idea_fuerza:
+            creador.establecer_idea_fuerza(
+                punto_vista=idea_fuerza, interes=idea_fuerza, frase=idea_fuerza
+            )
+        if historia_tres_minutos:
+            creador.establecer_historia_tres_minutos(historia_tres_minutos)
+        if mecanismo:
+            creador.establecer_mecanismo(mecanismo)
+        if datos_soporte:
+            for d in datos_soporte:
+                creador.agregar_dato_soporte(d)
+        if riesgos:
+            for r in riesgos:
+                creador.agregar_riesgo(r)
+        return CreadorContexto.renderizar_markdown(creador.construir())
+
+    # ── Capacidad 2: Selección del Gráfico ──
+    def recomendar_grafico(
+        self,
+        tipo_datos: str = "",
+        tiene_tiempo: bool = False,
+        cantidad_series: int = 0,
+        cantidad_categorias: int = 0,
+        tipo_comparacion: str = "",
+        muestra_parte_del_todo: bool = False,
+        **_kwargs: Any,
+    ) -> str:
+        """Recomienda el tipo de gráfico idóneo basado en las propiedades físicas de los datos."""
+        selector = SeleccionadorGrafico()
+        perfil = PerfilDatos(
+            tipo_datos=tipo_datos or "categorico",
+            cantidad_series=cantidad_series,
+            cantidad_categorias=cantidad_categorias,
+            tiene_dimension_tiempo=tiene_tiempo,
+            muestra_parte_del_todo=muestra_parte_del_todo,
+        )
+        recomendaciones = selector.recomendar(perfil)
+        if not recomendaciones:
+            return "No hay ninguna recomendación disponible para el perfil ingresado."
+
+        lineas = []
+        for r in recomendaciones:
+            simbolo = "⭐" if r.prioridad == 1 else "  "
+            lineas.append(f"{simbolo} **{r.etiqueta}**")
+            lineas.append(f"   {r.motivo}")
+            for nota in r.notas_diseno:
+                lineas.append(f"   - {nota}")
+            lineas.append("")
+        return "\n".join(lineas)
+
+    # ── Capacidad 3: Depuración de Ruido Visual ──
+    def diagnosticar_ruido(
+        self,
+        tiene_cuadriculas: bool = False,
+        tiene_bordes: bool = False,
+        tiene_leyenda_separada: bool = False,
+        tiene_3d: bool = False,
+        tiene_sombreado_fondo: bool = False,
+        **_kwargs: Any,
+    ) -> str:
+        """Identifica elementos de distracción en el gráfico y sugiere su depuración."""
+        depurador = DepuradorRuido()
+        depurador.auto_detectar(
+            tiene_cuadriculas=tiene_cuadriculas,
+            tiene_bordes=tiene_bordes,
+            tiene_leyenda_separada=tiene_leyenda_separada,
+            tiene_efecto_3d=tiene_3d,
+            tiene_sombreado_fondo=tiene_sombreado_fondo,
+        )
+        return DepuradorRuido.renderizar_markdown(depurador.construir())
+
+    # ── Capacidad 4: Dirección de la Atención ──
+    def planificar_atencion(
+        self,
+        elementos_enfoque: Optional[List[tuple]] = None,
+        estrategia_color: str = "",
+        preatentivo: bool = True,
+        **_kwargs: Any,
+    ) -> str:
+        """Diseña el plan de estímulos visuales (atributos preatentivos) para enfocar al lector."""
+        analizador = AnalizadorAtencion()
+        if elementos_enfoque:
+            for elemento, importancia in elementos_enfoque:
+                analizador.agregar_enfoque(str(elemento), importancia)
+        if preattentive := preatentivo:
+            analizador.auto_sugerir()
+        return AnalizadorAtencion.renderizar_markdown(analizador.construir())
+
+    # ── Capacidad 5: Evaluación del Diseño ──
+    def evaluar_diseno(
+        self,
+        tiene_titulo: bool = False,
+        color_estrategico: bool = False,
+        tiene_etiquetas: bool = False,
+        sin_ruido: bool = False,
+        flujo_narrativo: bool = False,
+        **_kwargs: Any,
+    ) -> str:
+        """Inspecciona el gráfico bajo las tres normas de asequibilidad, accesibilidad y estética."""
+        evaluador = EvaluadorDiseno()
+        evaluador.auto_evaluar(
+            tiene_titulo=tiene_titulo,
+            color_estrategico=color_estrategico,
+            tiene_anotaciones=tiene_etiquetas,
+            distracciones_eliminadas=sin_ruido,
+            jerarquia_clara=flujo_narrativo,
+        )
+        return EvaluadorDiseno.renderizar_markdown(evaluador.construir())
+
+    # ── Capacidad 6: Construcción de la Historia ──
+    def construir_historia(
+        self,
+        protagonista: str = "",
+        desequilibrio: str = "",
+        evidencia: Optional[List[str]] = None,
+        llamado_accion: str = "",
+        equilibrio_deseado: str = "",
+        flujo_narrativo: str = "cronologico",
+        comparacion: Optional[Dict[str, Any]] = None,
+        **_kwargs: Any,
+    ) -> str:
+        """Estructura la narrativa de datos en un arco clásico de tres actos."""
+        constructor = ConstructorHistoria(self.titulo)
+        if protagonista or desequilibrio:
+            constructor.establecer_inicio(
+                contexto=self.titulo,
+                protagonista=protagonista,
+                desequilibrio=desequilibrio,
+                equilibrio_deseado=equilibrio_deseado or llamado_accion,
+            )
+        if llamado_accion:
+            constructor.establecer_desenlace(llamado_accion=llamado_accion)
+        if flujo_narrativo:
+            constructor.establecer_flujo_narrativo(flujo=flujo_narrativo)
+        if evidencia:
+            for e in evidencia:
+                constructor.agregar_evidencia(e)
+        if comparacion:
+            constructor.agregar_comparacion(
+                f"{comparacion.get('titulo', '')}: {comparacion.get('opcion_a', '')} vs {comparacion.get('opcion_b', '')}"
+            )
+        return ConstructorHistoria.renderizar_markdown(constructor.construir())
+
+    # ── Capacidad 7: Diagnóstico Completo ──
+    def diagnostico_completo(
+        self,
+        calificaciones: Optional[Dict[str, Dict[str, int]]] = None,
+        **_kwargs: Any,
+    ) -> str:
+        """Realiza un diagnóstico integral cuantitativo de 5 dimensiones."""
+        motor = MotorDiagnostico(self.titulo)
+        if calificaciones:
+            for dimension, items in calificaciones.items():
+                for clave_item, puntaje in items.items():
+                    motor.calificar(dimension, clave_item, puntaje)
+            motor.auto_mejoras()
+        return MotorDiagnostico.renderizar_markdown(motor.construir())
+
+    # ── Capacidad 8: Rediseño de Gráficos (Makeover) ──
+    def rediseñar_grafico(
+        self,
+        problemas: Optional[List[str]] = None,
+        especificacion_diseno: str = "",
+        **_kwargs: Any,
+    ) -> str:
+        """Recomienda pasos específicos de rediseño para solucionar problemas detectados."""
+        redisenador = RedisenadorGrafico(self.titulo)
+        if problemas:
+            for p in problemas:
+                redisenador.agregar_problema(p)
+            redisenador.auto_pasos_desde_problemas()
+        if especificacion_diseno:
+            redisenador.establecer_especificacion_diseno(titulo=especificacion_diseno)
+        return RedisenadorGrafico.renderizar_markdown(redisenador.construir())
+
+    # ── Utilidad: Comparativa de Decisiones para Negocios ──
+    def construir_comparativa_decisiones(
+        self,
+        titulo: str = "Comparativa de Opciones",
+        opcion_a: str = "Opción A",
+        opcion_b: str = "Opción B",
+        criterios: Optional[List[str]] = None,
+        **_kwargs: Any,
+    ) -> str:
+        """Construye una estructura narrativa específica para contrastar alternativas estratégicas."""
+        constructor = ConstructorHistoria(self.titulo)
+        constructor.agregar_comparacion(f"{titulo}: {opcion_a} vs {opcion_b}")
+        if criterios:
+            for c in criterios:
+                constructor.agregar_comparacion(c)
+        return ConstructorHistoria.renderizar_markdown(constructor.construir())
+
+=========================================================================
+ FIN DE ARCHIVO: narrativa_datos/__init__.py
+=========================================================================
+
+
+=========================================================================
+ INICIO DE ARCHIVO: narrativa_datos/config.py
+=========================================================================
+"""Módulo de Configuración de Narrativa con Datos
+
+Define dimensiones de diagnóstico, tipos de gráficos, ruido visual, principios Gestalt y estrategias de color.
+"""
+
+from dataclasses import dataclass, field
+from typing import Dict, List
+
+
+# ── Tipos de Gráficos ──
+TIPOS_GRAFICO = (
+    "texto_simple", "tabla", "mapa_calor", "grafico_dispersion",
+    "linea", "grafico_pendiente", "barras_verticales", "barras_horizontales",
+    "barras_verticales_apiladas", "barras_horizontales_apiladas",
+    "cascada", "area_cuadrada",
+)
+
+ETIQUETAS_GRAFICO: Dict[str, str] = {
+    "texto_simple": "Texto Simple (un par de números clave)",
+    "tabla": "Tabla (para consulta de valores precisos)",
+    "mapa_calor": "Mapa de Calor (tabla con colores de intensidad)",
+    "grafico_dispersion": "Gráfico de Dispersión (relación entre dos variables)",
+    "linea": "Gráfico de Líneas (tendencias continuas en el tiempo)",
+    "grafico_pendiente": "Gráfico de Pendiente (comparación rápida de dos puntos temporales)",
+    "barras_verticales": "Barras Verticales (comparación de categorías con etiquetas cortas)",
+    "barras_horizontales": "Barras Horizontales (comparación de categorías con etiquetas largas)",
+    "barras_verticales_apiladas": "Barras Verticales Apiladas (parte del todo sobre barras verticales)",
+    "barras_horizontales_apiladas": "Barras Horizontales Apiladas (parte del todo sobre barras horizontales)",
+    "cascada": "Gráfico de Cascada (flujo de valores iniciales, cambios y final)",
+    "area_cuadrada": "Gráfico de Área Cuadrada (comparación de magnitudes dispares)",
+}
+
+GRAFICOS_A_EVITAR = ("circular", "dona", "tres_dimensiones", "doble_eje_y")
+
+ETIQUETAS_EVITAR: Dict[str, str] = {
+    "circular": "Gráfico Circular (tarta) — El ojo humano tiene dificultades para comparar ángulos y áreas.",
+    "dona": "Gráfico de Dona — Es aún más difícil estimar longitudes de arco que áreas circulares.",
+    "tres_dimensiones": "Efecto 3D — Distorsiona la perspectiva de los datos de forma innecesaria.",
+    "doble_eje_y": "Doble Eje Y — Causa confusión sobre qué serie corresponde a qué escala de datos.",
+}
+
+# ── Tipos de Datos ──
+TIPOS_DATOS = ("numero_unico", "pocos_numeros", "categorico", "continuo", "relacion", "parte_del_todo")
+
+# ── Atributos Preatentivos ──
+ATRIBUTOS_PREATENTIVOS = (
+    "orientacion", "forma", "longitud_linea", "ancho_linea",
+    "tamaño", "curvatura", "marcas_añadidas", "encierro",
+    "tono", "intensidad", "posicion_espacial", "movimiento",
+)
+
+ATRIBUTOS_CUANTITATIVOS = ("longitud_linea", "posicion_espacial", "ancho_linea", "tamaño", "intensidad")
+ATRIBUTOS_CATEGORICOS = ("tono", "forma", "orientacion", "encierro")
+
+# ── Principios Gestalt ──
+PRINCIPIOS_GESTALT = (
+    "proximidad", "similitud", "encierro", "cierre", "continuidad", "conexion",
+)
+
+ETIQUETAS_GESTALT: Dict[str, str] = {
+    "proximidad": "Proximidad — Los objetos cercanos físicamente se perciben como un grupo lógico.",
+    "similitud": "Similitud — Los objetos con color, forma o tamaño idéntico se asocian entre sí.",
+    "encierro": "Encierro — Los elementos rodeados por una frontera visual se perciben como un conjunto.",
+    "cierre": "Cierre — El cerebro tiende a completar figuras percibidas como incompletas.",
+    "continuidad": "Continuidad — El ojo sigue de forma natural la trayectoria más suave y fluida.",
+    "conexion": "Conexión — Los elementos unidos por una línea se perciben como un único grupo.",
+}
+
+# ── Elementos de Ruido Visual (Clutter) ──
+ELEMENTOS_RUIDO = (
+    "borde_grafico", "lineas_cuadricula", "marcadores_datos", "ceros_finales",
+    "texto_diagonal", "leyenda_separada", "etiquetas_redundantes",
+    "sombreado_fondo", "marcas_eje", "efectos_3d",
+)
+
+ETIQUETAS_RUIDO: Dict[str, str] = {
+    "borde_grafico": "Borde del gráfico — En la mayoría de los casos es innecesario (principio de cierre).",
+    "lineas_cuadricula": "Líneas de cuadrícula — Si son necesarias para leer valores, deben ser muy tenues (gris claro).",
+    "marcadores_datos": "Marcadores de datos en cada punto — Sobrecargan visualmente la línea sin aportar claridad.",
+    "ceros_finales": "Ceros finales redundantes — Aumentan la complejidad numérica sin añadir precisión útil.",
+    "texto_diagonal": "Texto en diagonal — Reduce la velocidad de lectura un 52%. Prefiere barras horizontales.",
+    "leyenda_separada": "Leyenda alejada de los datos — Obliga a la vista a hacer saltos constantes. Etiqueta directamente.",
+    "etiquetas_redundantes": "Etiquetas de datos redundantes — Mostrar etiquetas y mantener el eje al mismo tiempo.",
+    "sombreado_fondo": "Sombreado de fondo — Distrae del contenido principal sin justificación.",
+    "marcas_eje": "Marcas de eje excesivas — Sobrecargan las líneas de escala.",
+    "efectos_3d": "Efectos en 3D — Distorsionan la lectura de valores.",
+}
+
+# ── Dimensiones de Diagnóstico ──
+DIMENSIONES_DIAGNOSTICO = (
+    "contexto", "seleccion_visual", "ruido", "atencion", "diseno_narrativa",
+)
+
+ETIQUETAS_DIAGNOSTICO: Dict[str, str] = {
+    "contexto": "Evaluación del Contexto",
+    "seleccion_visual": "Evaluación de Selección Visual",
+    "ruido": "Evaluación de Ruido Visual",
+    "atencion": "Evaluación de Dirección de Atención",
+    "diseno_narrativa": "Evaluación de Diseño y Narrativa",
+}
+
+# ── Estructura de Historia ──
+ACTOS_HISTORIA = ("inicio", "nudo", "desenlace")
+
+ETIQUETAS_HISTORIA: Dict[str, str] = {
+    "inicio": "Inicio — Define el contexto, el protagonista y el desequilibrio.",
+    "nudo": "Nudo — Presenta los datos y la evidencia para argumentar el caso.",
+    "desenlace": "Desenlace — Llamado a la acción y resolución esperada.",
+}
+
+FLUJOS_NARRATIVOS = ("cronologico", "comenzar_por_el_final")
+
+# ── Estrategias de Color ──
+ESTRATEGIAS_COLOR = ("gris_mas_uno", "secuencial", "divergente", "categorico_limitado")
+
+ETIQUETAS_COLOR: Dict[str, str] = {
+    "gris_mas_uno": "Gris como base + un único color de énfasis (recomendado)",
+    "secuencial": "Gris a color con gradiente (ideal para mapas de calor/clasificación)",
+    "divergente": "Dos colores opuestos (ideal para contrastar valores positivos y negativos)",
+    "categorico_limitado": "Colores categóricos limitados (máximo de 3 a 4 colores)",
+}
+
+
+@dataclass
+class ConfiguracionAnalisis:
+    """Configuración en tiempo de ejecución para las tareas de análisis"""
+    dimensiones_incluidas: List[str] = field(
+        default_factory=lambda: list(DIMENSIONES_DIAGNOSTICO))
+    formato_salida: str = "markdown"
+    idioma: str = "es"
+    estrategia_color: str = "gris_mas_uno"
+    limite_elementos_ruido: int = 10
+
+    def validar(self) -> None:
+        for d in self.dimensiones_incluidas:
+            if d not in DIMENSIONES_DIAGNOSTICO:
+                raise ValueError(f"Dimensión de diagnóstico desconocida: {d}，opciones: {DIMENSIONES_DIAGNOSTICO}")
+        if self.formato_salida not in ("markdown", "json", "texto"):
+            raise ValueError(f"Formato de salida desconocido: {self.formato_salida}")
+        if self.estrategia_color not in ESTRATEGIAS_COLOR:
+            raise ValueError(f"Estrategia de color desconocida: {self.estrategia_color}")
+
+=========================================================================
+ FIN DE ARCHIVO: narrativa_datos/config.py
+=========================================================================
+
+
+=========================================================================
+ INICIO DE ARCHIVO: narrativa_datos/contexto.py
+=========================================================================
+"""Motor de Análisis de Contexto
+
+Permite perfilar a la audiencia, definir el mecanismo de comunicación,
+formular la Idea Fuerza (Big Idea) y estructurar la historia de 3 minutos.
+"""
+
+from dataclasses import dataclass, field
+from typing import List, Optional
+
+
+NIVELES_CONOCIMIENTO = ("experto", "general", "principiante")
+RELACIONES = ("primer_contacto", "establecida", "requiere_credibilidad")
+MECANISMOS = ("presentacion_en_vivo", "reporte_escrito", "correo_electronico", "mixto")
+TONOS = ("serio", "urgente", "celebracion", "informal", "neutral")
+MOTIVACIONES = (
+    "ahorrar_dinero", "incrementar_ingresos", "superar_competencia",
+    "ganar_mercado", "mitigar_riesgo", "innovar", "mejorar_eficiencia",
+)
+
+
+@dataclass
+class PerfilAudiencia:
+    """Perfil de la audiencia objetivo"""
+    audiencia_principal: str = ""
+    tomador_decision: str = ""
+    nivel_conocimiento: str = "general"
+    relacion: str = "primer_contacto"
+    sesgos: str = ""
+    motivacion: str = ""
+
+    def validar(self) -> List[str]:
+        problemas: List[str] = []
+        if not self.audiencia_principal:
+            problemas.append("Debe especificar la audiencia principal (roles o cargos específicos).")
+        if self.nivel_conocimiento not in NIVELES_CONOCIMIENTO:
+            problemas.append(f"El nivel de conocimiento '{self.nivel_conocimiento}' no es válido: {NIVELES_CONOCIMIENTO}")
+        if self.relacion not in RELACIONES:
+            problemas.append(f"La relación '{self.relacion}' no es válida: {RELACIONES}")
+        return problemas
+
+
+@dataclass
+class IdeaFuerza:
+    """Idea Fuerza (Big Idea) — Consta de un punto de vista único y del interés en juego"""
+    punto_vista_unico: str = ""
+    interes_en_juego: str = ""
+    frase_completa: str = ""
+
+    def validar(self) -> List[str]:
+        problemas: List[str] = []
+        if not self.punto_vista_unico:
+            problemas.append("La Idea Fuerza debe incluir tu punto de vista único.")
+        if not self.interes_en_juego:
+            problemas.append("La Idea Fuerza debe incluir el interés en juego (lo que se arriesga).")
+        if not self.frase_completa:
+            problemas.append("La Idea Fuerza debe redactarse en una única frase completa.")
+        elif len(self.frase_completa) < 10:
+            problemas.append("La frase de la Idea Fuerza es demasiado corta. Intenta ser más descriptivo.")
+        return problemas
+
+    def renderizar(self) -> str:
+        return self.frase_completa
+
+
+@dataclass
+class AnalisisContexto:
+    """Análisis completo del contexto de la comunicación"""
+    titulo: str = ""
+    audiencia: PerfilAudiencia = field(default_factory=PerfilAudiencia)
+    mecanismo: str = "presentacion_en_vivo"
+    tono: str = "neutral"
+    historia_tres_minutos: str = ""
+    idea_fuerza: IdeaFuerza = field(default_factory=IdeaFuerza)
+    datos_soporte: List[str] = field(default_factory=list)
+    riesgos: List[str] = field(default_factory=list)
+    llamado_accion: str = ""
+
+    def validar(self) -> List[str]:
+        problemas: List[str] = []
+        if not self.titulo:
+            problemas.append("Debe asignar un título al análisis de contexto.")
+        problemas.extend(self.audiencia.validar())
+        problemas.extend(self.idea_fuerza.validar())
+        if self.mecanismo not in MECANISMOS:
+            problemas.append(f"El mecanismo de comunicación '{self.mecanismo}' no es válido: {MECANISMOS}")
+        if self.tono not in TONOS:
+            problemas.append(f"El tono '{self.tono}' no es válido: {TONOS}")
+        if not self.historia_tres_minutos:
+            problemas.append("Falta la historia de 3 minutos (resumen ejecutivo inmediato).")
+        if not self.llamado_accion:
+            problemas.append("Debe especificar un llamado a la acción (qué debe hacer la audiencia).")
+        if not self.datos_soporte:
+            problemas.append("Debe identificar al menos un dato de soporte que valide su tesis.")
+        return problemas
+
+
+class CreadorContexto:
+    """Constructor y validador del contexto de comunicación"""
+
+    def __init__(self, titulo: str):
+        self._analisis = AnalisisContexto(titulo=titulo)
+
+    def establecer_audiencia(self, principal: str, tomador_decision: str = "",
+                             nivel_conocimiento: str = "general",
+                             relacion: str = "primer_contacto",
+                             sesgos: str = "", motivacion: str = "") -> "CreadorContexto":
+        self._analisis.audiencia = PerfilAudiencia(
+            audiencia_principal=principal, tomador_decision=tomador_decision,
+            nivel_conocimiento=nivel_conocimiento, relacion=relacion,
+            sesgos=sesges if (sesges := sesgos) else "", motivacion=motivacion,
+        )
+        return self
+
+    def establecer_mecanismo(self, mecanismo: str, tono: str = "neutral") -> "CreadorContexto":
+        self._analisis.mecanismo = mecanismo
+        self._analisis.tono = tono
+        return self
+
+    def establecer_historia_tres_minutos(self, historia: str) -> "CreadorContexto":
+        self._analisis.historia_tres_minutos = historia
+        return self
+
+    def establecer_idea_fuerza(self, punto_vista: str, interes: str,
+                               frase: str) -> "CreadorContexto":
+        self._analisis.idea_fuerza = IdeaFuerza(
+            punto_vista_unico=punto_vista, interes_en_juego=interes,
+            frase_completa=frase,
+        )
+        return self
+
+    def agregar_dato_soporte(self, dato: str) -> "CreadorContexto":
+        self._analisis.datos_soporte.append(dato)
+        return self
+
+    def agregar_riesgo(self, riesgo: str) -> "CreadorContexto":
+        self._analisis.riesgos.append(riesgo)
+        return self
+
+    def establecer_llamado_accion(self, llamado: str) -> "CreadorContexto":
+        self._analisis.llamado_accion = llamado
+        return self
+
+    def construir(self) -> AnalisisContexto:
+        return self._analisis
+
+    @staticmethod
+    def renderizar_markdown(ctx: AnalisisContexto) -> str:
+        problemas = ctx.validar()
+        advertencias = ""
+        if problemas:
+            elementos = "\n".join(f"- ⚠️ {p}" for p in problemas)
+            advertencias = f"\n## ⚠️ Elementos por Completar o Corregir\n{elementos}\n"
+
+        lista_datos = "\n".join(f"- {d}" for d in ctx.datos_soporte) if ctx.datos_soporte else "- (Sin especificar)"
+        lista_riesgos = "\n".join(f"- {r}" for r in ctx.riesgos) if ctx.riesgos else "- (Sin especificar)"
+
+        mecanismo_legible = ctx.mecanismo.replace("_", " ").capitalize()
+        tono_legible = ctx.tono.capitalize()
+
+        return f"""# 📋 Reporte de Análisis de Contexto: {ctx.titulo}
+{advertencias}
+## Perfil de la Audiencia
+| Dimensión | Detalle |
+|-----------|---------|
+| Audiencia Principal | {ctx.audiencia.audiencia_principal or '(Sin especificar)'} |
+| Tomador de Decisiones | {ctx.audiencia.tomador_decision or '(Sin especificar)'} |
+| Nivel de Conocimiento | {ctx.audiencia.nivel_conocimiento.capitalize()} |
+| Estado de Relación | {ctx.audiencia.relacion.replace('_', ' ').capitalize()} |
+| Sesgos o Preferencias | {ctx.audiencia.sesgos or '(Ninguno conocido)'} |
+| Motivación Principal | {ctx.audiencia.motivacion or '(Sin especificar)'} |
+
+## Mecanismo de Comunicación
+- **Formato**: {mecanismo_legible}
+- **Tono General**: {tono_legible}
+
+## Mensaje Central
+
+### Historia de 3 Minutos
+{ctx.historia_tres_minutos or '(No redactada aún)'}
+
+### Idea Fuerza (Big Idea)
+> {ctx.idea_fuerza.renderizar() or '(No definida)'}
+
+- **Punto de Vista Único**: {ctx.idea_fuerza.punto_vista_unico or '(No definido)'}
+- **Interés en Juego**: {ctx.idea_fuerza.interes_en_juego or '(No definido)'}
+
+### Datos de Soporte
+{lista_datos}
+
+### Riesgos y Contraevidencia
+{lista_riesgos}
+
+## Llamado a la Acción (Call to Action)
+{ctx.llamado_accion or '(Sin especificar)'}
+"""
+
+=========================================================================
+ FIN DE ARCHIVO: narrativa_datos/contexto.py
+=========================================================================
+
+
+=========================================================================
+ INICIO DE ARCHIVO: narrativa_datos/seleccionador_grafico.py
+=========================================================================
+"""Selector y Recomendador de Gráficos
+
+Analiza las propiedades del conjunto de datos y las intenciones de comunicación
+para recomendar el mejor tipo de gráfico basándose en la metodología SWD.
+"""
+
+from dataclasses import dataclass, field
+from typing import List, Optional
+
+from .config import ETIQUETAS_GRAFICO, GRAFICOS_A_EVITAR, ETIQUETAS_EVITAR
+
+
+@dataclass
+class RecomendacionGrafico:
+    """Resultado de la recomendación de un gráfico"""
+    tipo_grafico: str
+    etiqueta: str
+    motivo: str
+    notas_diseno: List[str] = field(default_factory=list)
+    prioridad: int = 1  # 1=Primera opción (recomendado), 2=Alternativa razonable
+
+
+@dataclass
+class PerfilDatos:
+    """Descriptor de las propiedades físicas y lógica del conjunto de datos"""
+    tipo_datos: str = "categorico"               # categorico/continuo/relacion/numero_unico
+    cantidad_series: int = 1
+    cantidad_categorias: int = 0
+    tiene_dimension_tiempo: bool = False
+    tiene_valores_negativos: bool = False
+    muestra_parte_del_todo: bool = False
+    nombres_categorias_largos: bool = False
+    compara_dos_puntos: bool = False
+    muestra_cambios_inicio_fin: bool = False
+    gran_diferencia_magnitud: bool = False
+
+
+class SeleccionadorGrafico:
+    """Selector de gráficos según el perfil de los datos"""
+
+    def __init__(self) -> None:
+        self._perfil: Optional[PerfilDatos] = None
+
+    def establecer_perfil(self, **valores) -> "SeleccionadorGrafico":
+        self._perfil = PerfilDatos(**valores)
+        return self
+
+    def verificar_evitar(self, grafico_propuesto: str) -> List[str]:
+        """Comprueba si el gráfico propuesto está en la lista de prácticas desaconsejadas"""
+        advertencias: List[str] = []
+        clave = grafico_propuesto.lower().strip().replace(" ", "_")
+
+        # Conversiones para tolerar variaciones comunes de nombres en español
+        if "pie" in clave or "circular" in clave or "tarta" in clave:
+            clave = "circular"
+        elif "dona" in clave or "rosquilla" in clave:
+            clave = "dona"
+        elif "3d" in clave or "dimensiones" in clave:
+            clave = "tres_dimensiones"
+        elif "doble" in clave or "dos_ejes" in clave or "eje_secundario" in clave:
+            clave = "doble_eje_y"
+
+        if clave in GRAFICOS_A_EVITAR:
+            advertencias.append(f"⚠️ {ETIQUETAS_EVITAR.get(clave, grafico_propuesto)} — Se aconseja buscar una alternativa.")
+
+        if clave == "circular":
+            advertencias.append("Alternativa recomendada: Gráfico de barras horizontales (ordenado de mayor a menor) o destacar directamente un número en texto simple.")
+        elif clave == "dona":
+            advertencias.append("Alternativa recomendada: Gráfico de barras horizontales o gráfico de barras horizontales apiladas al 100%.")
+        elif clave == "tres_dimensiones":
+            advertencias.append("Alternativa recomendada: Utilice siempre la versión equivalente en 2 dimensiones planas.")
+        elif clave == "doble_eje_y":
+            advertencias.append("Alternativa recomendada 1: Etiquete directamente los puntos de datos y omita el segundo eje.")
+            advertencias.append("Alternativa recomendada 2: Divida la visualización verticalmente en dos gráficos individuales que compartan el eje X.")
+
+        return advertencias
+
+    def recomendar(self, perfil: Optional[PerfilDatos] = None) -> List[RecomendacionGrafico]:
+        """Recomienda tipos de gráficos basados en el perfil de datos"""
+        p = perfil or self._perfil
+        if not p:
+            raise ValueError("Debe establecer un perfil de datos mediante establecer_perfil() antes de recomendar.")
+
+        recomendaciones: List[RecomendacionGrafico] = []
+
+        # 1. Un único número o muy pocos valores
+        if p.tipo_datos == "numero_unico" or (p.cantidad_series <= 2 and p.cantidad_categorias == 0):
+            recomendaciones.append(RecomendacionGrafico(
+                "texto_simple", ETIQUETAS_GRAFICO["texto_simple"],
+                "Cuando solo tienes uno o dos números que comunicar, el texto directo tiene el mayor impacto.",
+                ["Acompaña el número con un texto explicativo claro y conciso.",
+                 "Usa un tamaño de fuente significativamente grande para destacar el valor central.",
+                 "Puedes usar color para indicar la dirección del cambio (ej. incremento o descenso)."], 1))
+            return recomendaciones
+
+        # 2. Relación entre variables independientes
+        if p.tipo_datos == "relacion":
+            recomendaciones.append(RecomendacionGrafico(
+                "grafico_dispersion", ETIQUETAS_GRAFICO["grafico_dispersion"],
+                "Ideal para mostrar la relación entre dos variables distintas en un plano bidimensional.",
+                ["Añade líneas de referencia (como promedios) para ayudar a categorizar cuadrantes de interés.",
+                 "Etiqueta directamente los puntos excepcionales o casos de estudio de interés."], 1))
+            return recomendaciones
+
+        # 3. Datos continuos o de series de tiempo
+        if p.tiene_dimension_tiempo or p.tipo_datos == "continuo":
+            if p.compara_dos_puntos:
+                recomendaciones.append(RecomendacionGrafico(
+                    "grafico_pendiente", ETIQUETAS_GRAFICO["grafico_pendiente"],
+                    "Perfecto para comparar dos momentos en el tiempo, mostrando tanto el cambio absoluto como la inclinación de la pendiente.",
+                    ["Evita este gráfico si hay demasiadas líneas que se cruzan y confunden al lector.",
+                     "Utiliza colores para destacar una o dos líneas de interés principal."], 1))
+
+            recomendaciones.append(RecomendacionGrafico(
+                "linea", ETIQUETAS_GRAFICO["linea"],
+                "La opción predilecta para visualizar la evolución de tendencias a lo largo del tiempo de forma continua.",
+                ["Asegúrate de que los intervalos de tiempo en el eje X sean constantes y uniformes.",
+                 "Coloca las etiquetas de las series al final de cada línea en lugar de usar una leyenda separada.",
+                 "Si incluye proyecciones o datos futuros, dibújelos con líneas discontinuas.",
+                 "Evita cruzar más de 4 o 5 líneas en un mismo gráfico (evita el efecto espagueti)."],
+                1 if not p.compara_dos_puntos else 2))
+            return recomendaciones
+
+        # 4. Proporción o Parte del todo
+        if p.muestra_parte_del_todo:
+            recomendaciones.append(RecomendacionGrafico(
+                "barras_horizontales_apiladas", ETIQUETAS_GRAFICO["barras_horizontales_apiladas"],
+                "La versión apilada al 100% permite comparar la estructura de componentes con una línea base alineada en ambos extremos.",
+                ["Ideal para representar escalas Likert (encuestas de opinión).",
+                 "Alinea las respuestas positivas a la derecha y las negativas a la izquierda para un contraste directo."], 1))
+
+            if p.gran_diferencia_magnitud:
+                recomendaciones.append(RecomendacionGrafico(
+                    "area_cuadrada", ETIQUETAS_GRAFICO["area_cuadrada"],
+                    "Cuando las magnitudes difieren en órdenes de tamaño insalvables para una barra ordinaria, el área cuadrada es una opción compacta.",
+                    ["Utilice esta opción con cautela, ya que estimar diferencias de área es más difícil que diferencias de longitud."], 2))
+            return recomendaciones
+
+        # 5. Evolución incremental (Casos acumulativos)
+        if p.muestra_cambios_inicio_fin:
+            recomendaciones.append(RecomendacionGrafico(
+                "cascada", ETIQUETAS_GRAFICO["cascada"],
+                "Excelente para desglosar un valor inicial, sus incrementos o decrementos intermedios y el resultado final acumulado.",
+                ["Utilice colores diferenciados para aumentos (ej. verde), disminuciones (ej. rojo) y totales globales (ej. gris oscuro)."], 1))
+            return recomendaciones
+
+        # 6. Datos categóricos ordinarios (Opción por defecto)
+        if p.nombres_categorias_largos or p.cantidad_categorias > 5:
+            recomendaciones.append(RecomendacionGrafico(
+                "barras_horizontales", ETIQUETAS_GRAFICO["barras_horizontales"],
+                "El gráfico estándar por excelencia para datos categóricos. Las etiquetas se leen de izquierda a derecha de forma natural.",
+                ["Ordena las categorías de forma lógica: por orden alfabético natural o por magnitud descendente.",
+                 "El ancho de las barras debe ser mayor que el espacio en blanco que las separa.",
+                 "El eje de valores siempre debe comenzar de forma estricta en el cero absoluto."], 1))
+        else:
+            recomendaciones.append(RecomendacionGrafico(
+                "barras_verticales", ETIQUETAS_GRAFICO["barras_verticales"],
+                "Adecuado para pocas categorías con nombres cortos.",
+                ["El eje numérico base debe comenzar obligatoriamente en cero para evitar distorsiones visuales.",
+                 "Asegúrese de dejar un espacio moderado y equilibrado entre las barras."], 1))
+
+            recomendaciones.append(RecomendacionGrafico(
+                "barras_horizontales", ETIQUETAS_GRAFICO["barras_horizontales"],
+                "Las barras horizontales siguen siendo una alternativa de comparación excelente y muy legible.",
+                ["Permite un escaneo visual rápido en forma de Z.",
+                 "Facilita la lectura de etiquetas incluso si se expanden en el futuro."], 2))
+
+        # 7. Comparaciones multicategoría complejas
+        if p.cantidad_series > 1 and p.cantidad_categorias > 0:
+            recomendaciones.append(RecomendacionGrafico(
+                "barras_verticales_apiladas", ETIQUETAS_GRAFICO["barras_verticales_apiladas"],
+                "Permite ver totales de grupo junto con los componentes internos, aunque su legibilidad disminuye después de la primera serie base.",
+                ["Utilícelo con cuidado, ya que los segmentos superiores carecen de una línea de referencia común.",
+                 "No apile demasiados segmentos en una misma barra."], 2))
+
+        return recomendaciones
+
+    @staticmethod
+    def renderizar_markdown(recs: List[RecomendacionGrafico],
+                            advertencias_evitar: Optional[List[str]] = None) -> str:
+        lineas = ["# 📊 Recomendaciones de Selección de Gráfico\n"]
+
+        principales = [r for r in recs if r.prioridad == 1]
+        alternativas = [r for r in recs if r.prioridad == 2]
+
+        if principales:
+            lineas.append("## ✅ Gráficos Recomendados (Prioridad Alta)")
+            for r in principales:
+                lineas.append(f"\n### {r.etiqueta}")
+                lineas.append(f"**Motivo de selección**: {r.motivo}\n")
+                if r.notas_diseno:
+                    lineas.append("**Recomendaciones de diseño**:")
+                    for n in r.notas_diseno:
+                        lineas.append(f"- {n}")
+
+        if alternativas:
+            lineas.append("\n## 🔄 Alternativas Razonables")
+            for r in alternativas:
+                lineas.append(f"\n### {r.etiqueta}")
+                lineas.append(f"**Motivo**: {r.motivo}\n")
+                if r.notas_diseno:
+                    lineas.append("**Recomendaciones de diseño**:")
+                    for n in r.notas_diseno:
+                        lineas.append(f"- {n}")
+
+        if advertencias_evitar:
+            lineas.append("\n## ⛔ Prácticas Desaconsejadas")
+            for w in advertencias_evitar:
+                lineas.append(f"- {w}")
+
+        return "\n".join(lineas)
+
+=========================================================================
+ FIN DE ARCHIVO: narrativa_datos/seleccionador_grafico.py
+=========================================================================
+
+
+=========================================================================
+ INICIO DE ARCHIVO: narrativa_datos/depurador_ruido.py
+=========================================================================
+"""Analizador y Depurador de Ruido Visual (Clutter)
+
+Identifica elementos innecesarios en la visualización basándose en los
+principios Gestalt y en la reducción de carga cognitiva para el lector.
+"""
+
+from dataclasses import dataclass, field
+from typing import List, Dict
+
+from .config import ELEMENTOS_RUIDO, ETIQUETAS_RUIDO, PRINCIPIOS_GESTALT, ETIQUETAS_GESTALT
+
+
+@dataclass
+class ElementoRuido:
+    """Representa un elemento individual que causa ruido visual"""
+    tipo_elemento: str
+    descripcion: str
+    gravedad: int = 3                # Escala 1-5 (5 siendo el ruido más grave)
+    recomendacion: str = ""
+
+    def validar(self) -> List[str]:
+        problemas: List[str] = []
+        if self.tipo_elemento not in ELEMENTOS_RUIDO:
+            problemas.append(f"Elemento de ruido desconocido: {self.tipo_elemento}. Válidos: {ELEMENTOS_RUIDO}")
+        if not 1 <= self.gravedad <= 5:
+            problemas.append(f"La gravedad {self.gravedad} está fuera del rango permitido (1-5).")
+        return problemas
+
+
+@dataclass
+class AplicacionGestalt:
+    """Propuesta de aplicación de un principio Gestalt para corregir un diseño"""
+    principio: str
+    problema_actual: str
+    sugerencia: str
+
+    def validar(self) -> List[str]:
+        problemas: List[str] = []
+        if self.principio not in PRINCIPIOS_GESTALT:
+            problemas.append(f"Principio Gestalt desconocido: {self.principio}. Válidos: {PRINCIPIOS_GESTALT}")
+        return problemas
+
+
+@dataclass
+class ReporteDepuracion:
+    """Contiene el resultado completo del análisis de ruido visual"""
+    elementos_ruido: List[ElementoRuido] = field(default_factory=list)
+    aplicaciones_gestalt: List[AplicacionGestalt] = field(default_factory=list)
+    problemas_alineacion: List[str] = field(default_factory=list)
+    problemas_espacio_blanco: List[str] = field(default_factory=list)
+    problemas_contraste: List[str] = field(default_factory=list)
+
+
+class DepuradorRuido:
+    """Diagnosticador de ruido visual e implementador de reglas de depuración"""
+
+    PASOS_DEPURACION = [
+        ("Eliminar bordes de gráficos", "borde_grafico", "Usa el principio de cierre Gestalt: el espacio en blanco actúa como frontera natural."),
+        ("Atenuar o quitar cuadrículas", "lineas_cuadricula", "Las líneas de cuadrícula compiten con los datos. Si se conservan, deben ser muy tenues."),
+        ("Remover marcadores excesivos", "marcadores_datos", "Los marcadores de datos en cada punto crean ruido. Deja solo los puntos clave."),
+        ("Simplificar etiquetas de ejes", "ceros_finales", "Quita ceros decimales innecesarios, abrevia nombres de mes y evita textos en diagonal."),
+        ("Etiquetar datos directamente", "leyenda_separada", "Evita que la vista salte constantemente de la leyenda al gráfico; etiqueta directamente las series."),
+        ("Mantener consistencia visual", "etiquetas_redundantes", "Elimina duplicaciones de información (por ejemplo, etiquetas numéricas de datos junto a un eje numérico completo).")
+    ]
+
+    def __init__(self) -> None:
+        self._reporte = ReporteDepuracion()
+
+    def agregar_ruido(self, tipo_elemento: str, descripcion: str,
+                      gravedad: int = 3, recomendacion: str = "") -> "DepuradorRuido":
+        if not recomendacion:
+            recomendacion = ETIQUETAS_RUIDO.get(tipo_elemento, "Se aconseja eliminar o atenuar.")
+        item = ElementoRuido(tipo_elemento=tipo_elemento, descripcion=descripcion,
+                             gravedad=gravedad, recomendacion=recomendacion)
+        self._reporte.elementos_ruido.append(item)
+        return self
+
+    def agregar_gestalt(self, principio: str, problema_actual: str,
+                        sugerencia: str) -> "DepuradorRuido":
+        self._reporte.aplicaciones_gestalt.append(
+            AplicacionGestalt(principio=principio, problema_actual=problema_actual,
+                              sugerencia=sugerencia))
+        return self
+
+    def agregar_problema_alineacion(self, detalle: str) -> "DepuradorRuido":
+        self._reporte.problemas_alineacion.append(detalle)
+        return self
+
+    def agregar_problema_espacio_blanco(self, detalle: str) -> "DepuradorRuido":
+        self._reporte.problemas_espacio_blanco.append(detalle)
+        return self
+
+    def agregar_problema_contraste(self, detalle: str) -> "DepuradorRuido":
+        self._reporte.problemas_contraste.append(detalle)
+        return self
+
+    def auto_detectar(self, tiene_bordes: bool = False, tiene_cuadriculas: bool = False,
+                      tiene_marcadores: bool = False, tiene_ceros_finales: bool = False,
+                      tiene_texto_diagonal: bool = False, tiene_leyenda_separada: bool = False,
+                      tiene_efecto_3d: bool = False, tiene_sombreado_fondo: bool = False) -> "DepuradorRuido":
+        """Identifica de forma automática elementos de ruido a partir de banderas booleanas"""
+        verificaciones = [
+            (tiene_bordes, "borde_grafico", "Se detectó borde limitante alrededor del gráfico", 2),
+            (tiene_cuadriculas, "lineas_cuadricula", "Se detectaron líneas de cuadrícula explícitas", 2),
+            (tiene_marcadores, "marcadores_datos", "Se detectaron marcadores individuales en cada punto", 2),
+            (tiene_ceros_finales, "ceros_finales", "Se detectaron ceros decimales repetitivos en los ejes (ej. 10.00)", 3),
+            (tiene_texto_diagonal, "texto_diagonal", "Se detectaron etiquetas rotadas en diagonal", 4),
+            (tiene_leyenda_separada, "leyenda_separada", "Se detectó leyenda alejada del conjunto de datos principal", 3),
+            (tiene_efecto_3d, "efectos_3d", "Se detectaron efectos visuales 3D o de profundidad", 5),
+            (tiene_sombreado_fondo, "sombreado_fondo", "Se detectó un fondo de color u oscurecido", 2),
+        ]
+        for condicion, etipo, desc, gravedad in verificaciones:
+            if condicion:
+                self.agregar_ruido(etipo, desc, gravedad)
+        return self
+
+    def construir(self) -> ReporteDepuracion:
+        return self._reporte
+
+    def calcular_carga_cognitiva_total(self) -> int:
+        """Suma de gravedad de todos los problemas para estimar la carga cognitiva"""
+        return sum(item.gravedad for item in self._reporte.elementos_ruido)
+
+    def estimar_reduccion_carga(self) -> int:
+        """Porcentaje estimado de reducción de carga mental para el lector al aplicar la limpieza"""
+        total = self.calcular_carga_cognitiva_total()
+        if total == 0:
+            return 0
+        return min(int(total / (total + 5) * 100), 90)
+
+    @staticmethod
+    def renderizar_markdown(reporte: ReporteDepuracion) -> str:
+        lineas = ["# 🧹 Reporte de Depuración de Ruido Visual\n"]
+
+        carga_total = sum(item.gravedad for item in reporte.elementos_ruido)
+        lineas.append("## Resumen del Diagnóstico")
+        lineas.append(f"- **Elementos redundantes detectados**: {len(reporte.elementos_ruido)}")
+        lineas.append(f"- **Carga cognitiva de partida (Gravedad total)**: {carga_total}")
+        lineas.append("")
+
+        if reporte.elementos_ruido:
+            lineas.append("## Inventario de Ruido Visual\n")
+            lineas.append("| Elemento | Descripción | Gravedad | Recomendación SWD |")
+            lineas.append("|----------|-------------|----------|-------------------|")
+            for item in sorted(reporte.elementos_ruido, key=lambda x: -x.gravedad):
+                barra = "█" * item.gravedad + "░" * (5 - item.gravedad)
+                tipo_formateado = item.tipo_elemento.replace("_", " ").capitalize()
+                lineas.append(f"| {tipo_formateado} | {item.descripcion} | {barra} | {item.recomendacion} |")
+
+        lineas.append("\n## Los Seis Pasos de la Depuración SWD\n")
+        for i, (paso, etype, detalle) in enumerate(DepuradorRuido.PASOS_DEPURACION, 1):
+            detectado = any(c.tipo_elemento == etype for c in reporte.elementos_ruido)
+            icono = "🔴" if detectado else "🟢"
+            lineas.append(f"{i}. {icono} **{paso}** — {detalle}")
+
+        if reporte.aplicaciones_gestalt:
+            lineas.append("\n## Aplicación de Principios Gestalt\n")
+            for g in reporte.aplicaciones_gestalt:
+                titulo_principio = ETIQUETAS_GESTALT.get(g.principio, g.principle if hasattr(g, 'principle') else g.principio)
+                lineas.append(f"### {titulo_principio}")
+                lineas.append(f"- **Defecto observado**: {g.problema_actual}")
+                lineas.append(f"- **Propuesta Gestalt**: {g.sugerencia}\n")
+
+        if reporte.problemas_alineacion:
+            lineas.append("## Alineación Inconsistente\n")
+            for a in reporte.problemas_alineacion:
+                lineas.append(f"- ❌ {a}")
+
+        if reporte.problemas_espacio_blanco:
+            lineas.append("\n## Uso del Espacio en Blanco\n")
+            for w in reporte.problemas_espacio_blanco:
+                lineas.append(f"- ❌ {w}")
+
+        if reporte.problemas_contraste:
+            lineas.append("\n## Problemas de Contraste y Enfoque\n")
+            for c in reporte.problemas_contraste:
+                lineas.append(f"- ❌ {c}")
+
+        return "\n".join(lineas)
+
+=========================================================================
+ FIN DE ARCHIVO: narrativa_datos/depurador_ruido.py
+=========================================================================
+
+
+=========================================================================
+ INICIO DE ARCHIVO: narrativa_datos/atencion.py
+=========================================================================
+"""Planificador de Atención Visual
+
+Permite definir puntos de enfoque, planificar la jerarquía visual de los
+elementos y aplicar atributos preatentivos y estrategias de color SWD.
+"""
+
+from dataclasses import dataclass, field
+from typing import List, Optional, Dict
+
+from .config import (
+    ATRIBUTOS_PREATENTIVOS, ATRIBUTOS_CUANTITATIVOS,
+    ATRIBUTOS_CATEGORICOS, ESTRATEGIAS_COLOR, ETIQUETAS_COLOR,
+)
+
+
+@dataclass
+class PuntoEnfoque:
+    """Representa un punto de enfoque visual en el gráfico"""
+    elemento: str
+    importancia: int = 3             # Nivel de importancia del elemento (1 a 5)
+    enfasis_actual: int = 1          # Grado de énfasis actual en el gráfico (1 a 5)
+    enfasis_deseado: int = 5         # Grado de énfasis deseado en el gráfico (1 a 5)
+    atributos_usados: List[str] = field(default_factory=list)
+
+    @property
+    def brecha_enfasis(self) -> int:
+        return self.enfasis_deseado - self.enfasis_actual
+
+
+@dataclass
+class PlanColor:
+    """Especificación de la paleta de colores para la narrativa"""
+    estrategia: str = "gris_mas_uno"
+    color_base: str = "Gris (#808080)"
+    color_enfasis: str = "Azul (#4472C4)"
+    color_negativo: str = "Naranja (#ED7D31)"
+    notas: List[str] = field(default_factory=list)
+    seguro_daltonicos: bool = True
+
+
+@dataclass
+class NivelJerarquiaVisual:
+    """Nivel en la jerarquía de lectura del gráfico"""
+    nivel: int
+    elementos: List[str] = field(default_factory=list)
+    tratamiento: str = ""
+
+
+@dataclass
+class PlanAtencion:
+    """Reporte estructurado del plan de atención visual"""
+    puntos_enfoque: List[PuntoEnfoque] = field(default_factory=list)
+    plan_color: PlanColor = field(default_factory=PlanColor)
+    jerarquia: List[NivelJerarquiaVisual] = field(default_factory=list)
+    sugerencias_preatentivas: List[str] = field(default_factory=list)
+
+
+class AnalizadorAtencion:
+    """Planificador y optimizador de la atención visual"""
+
+    def __init__(self) -> None:
+        self._plan = PlanAtencion()
+
+    def agregar_enfoque(self, elemento: str, importancia: int = 3,
+                        enfasis_actual: int = 1,
+                        enfasis_deseado: int = 5) -> "AnalizadorAtencion":
+        self._plan.puntos_enfoque.append(PuntoEnfoque(
+            elemento=elemento, importancia=importancia,
+            enfasis_actual=enfasis_actual,
+            enfasis_deseado=enfasis_deseado))
+        return self
+
+    def establecer_plan_color(self, estrategia: str = "gris_mas_uno",
+                              enfasis: str = "Azul (#4472C4)",
+                              negativo: str = "Naranja (#ED7D31)",
+                              seguro_daltonicos: bool = True) -> "AnalizadorAtencion":
+        self._plan.plan_color = PlanColor(
+            estrategia=estrategia, color_enfasis=enfasis,
+            color_negativo=negativo, seguro_daltonicos=seguro_daltonicos)
+        return self
+
+    def agregar_nivel_jerarquia(self, nivel: int, elementos: List[str],
+                                tratamiento: str) -> "AnalizadorAtencion":
+        self._plan.jerarquia.append(NivelJerarquiaVisual(
+            nivel=nivel, elementos=elementos, tratamiento=tratamiento))
+        return self
+
+    def auto_sugerir(self) -> "AnalizadorAtencion":
+        """Genera sugerencias automáticas de atributos preatentivos según las brechas de énfasis"""
+        sugerencias: List[str] = []
+        brecha_alta = [f for f in self._plan.puntos_enfoque if f.brecha_enfasis >= 3]
+        brecha_media = [f for f in self._plan.puntos_enfoque if 1 <= f.brecha_enfasis < 3]
+
+        if brecha_alta:
+            sugerencias.append("Para elementos con brechas altas de énfasis, superponga atributos preatentivos: color + tamaño + texto en negrita.")
+            sugerencias.append("Mande primero todos los elementos secundarios al fondo pintándolos de gris claro, y luego resalte el foco con color.")
+        if brecha_media:
+            sugerencias.append("Para elementos de importancia media, un único atributo preatentivo (negrita o color tenue) suele ser suficiente.")
+
+        cantidad_focos = len(self._plan.puntos_enfoque)
+        if cantidad_focos > 3:
+            sugerencias.append(f"⚠️ Actualmente tiene {cantidad_focos} focos definidos. Redúzcalos a 1-3 elementos para no sobrecargar la atención.")
+            sugerencias.append("Los atributos preatentivos funcionan mejor bajo escasez: cuanto más cosas intente resaltar, menos resaltará cada una.")
+
+        sugerencias.append("Aplique la prueba de 'dónde se dirigen los ojos primero' cerrando y abriendo los ojos rápidamente frente al gráfico.")
+        sugerencias.append("Recuerde: un cambio de color debe significar un cambio de información, no cambie colores solo por estética.")
+
+        self._plan.sugerencias_preatentivas = sugerencias
+        return self
+
+    def diagnosticar_mirada(self) -> List[str]:
+        """Diagnóstico de coherencia visual basado en la prioridad y el énfasis real"""
+        diagnosticos: List[str] = []
+        ordenados_por_enfasis = sorted(self._plan.puntos_enfoque,
+                                       key=lambda x: -x.enfasis_actual)
+
+        if ordenados_por_enfasis:
+            mas_destacado = ordenados_por_enfasis[0]
+            mas_importante = max(self._plan.puntos_enfoque, key=lambda x: x.importancia)
+            if mas_destacado.elemento != mas_importante.elemento:
+                diagnosticos.append(
+                    f"⚠️ El elemento más destacado actualmente es '{mas_destacado.elemento}', "
+                    f"pero el más importante es '{mas_importante.elemento}'. Ajuste los pesos visuales.")
+            else:
+                diagnosticos.append(f"✅ El elemento más destacado coincide con el más importante: '{mas_destacado.elemento}'.")
+
+        elementos_muy_enfáticos = sum(1 for f in self._plan.puntos_enfoque if f.enfasis_actual >= 4)
+        if elementos_muy_enfáticos > 2:
+            diagnosticos.append(
+                f"⚠️ Hay {elementos_muy_enfáticos} elementos con énfasis alto. "
+                "Resaltar demasiadas cosas anula el efecto de enfoque (efecto rebaño).")
+
+        return diagnosticos
+
+    def construir(self) -> PlanAtencion:
+        if not self._plan.sugerencias_preatentivas:
+            self.auto_sugerir()
+        return self._plan
+
+    @staticmethod
+    def renderizar_markdown(plan: PlanAtencion) -> str:
+        lineas = ["# 🎯 Planificación de Atención Visual\n"]
+
+        if plan.puntos_enfoque:
+            lineas.append("## Análisis de Focos de Atención\n")
+            lineas.append("| Elemento | Importancia | Énfasis Actual | Énfasis Deseado | Brecha |")
+            lineas.append("|----------|-------------|----------------|-----------------|--------|")
+            for f in sorted(plan.puntos_enfoque, key=lambda x: -x.importancia):
+                imp = "█" * f.importancia + "░" * (5 - f.importancia)
+                cur = "█" * f.enfasis_actual + "░" * (5 - f.enfasis_actual)
+                des = "█" * f.enfasis_deseado + "░" * (5 - f.enfasis_deseado)
+                brecha = f.brecha_enfasis
+                icono = "🔴" if brecha >= 3 else "🟡" if brecha >= 1 else "🟢"
+                lineas.append(f"| {f.elemento} | {imp} | {cur} | {des} | {icono} {brecha} |")
+
+        cp = plan.plan_color
+        lineas.append("\n## Estrategia de Color\n")
+        lineas.append(f"- **Estrategia**: {ETIQUETAS_COLOR.get(cp.estrategia, cp.estrategia)}")
+        lineas.append(f"- **Color Base (Fondo)**: {cp.color_base}")
+        lineas.append(f"- **Color de Énfasis**: {cp.color_enfasis}")
+        lineas.append(f"- **Color para Negativos**: {cp.color_negativo}")
+        lineas.append(f"- **Optimizado para Daltonismo**: {'✅ Sí' if cp.seguro_daltonicos else '❌ No'}")
+        for n in cp.notes if hasattr(cp, 'notes') else []:
+            lineas.append(f"- {n}")
+
+        if plan.jerarquia:
+            lineas.append("\n## Diseño de Jerarquía Visual de Lectura\n")
+            for h in sorted(plan.jerarquia, key=lambda x: x.level if hasattr(x, 'level') else x.nivel):
+                elementos = ", ".join(h.elementos)
+                lineas.append(f"**Nivel {h.nivel}**: {elementos}")
+                lineas.append(f"  Tratamiento visual: {h.tratamiento}\n")
+
+        if plan.sugerencias_preatentivas:
+            lineas.append("## Consejos sobre Atributos Preatentivos\n")
+            for s in plan.sugerencias_preatentivas:
+                lineas.append(f"- {s}")
+
+        return "\n".join(lineas)
+
+=========================================================================
+ FIN DE ARCHIVO: narrativa_datos/atencion.py
+=========================================================================
+
+
+=========================================================================
+ INICIO DE ARCHIVO: narrativa_datos/evaluador_diseno.py
+=========================================================================
+"""Evaluador de Diseño Visual
+
+Evalúa la calidad visual de un gráfico a través de tres dimensiones clave:
+asequibilidad (percepción de funciones), accesibilidad y estética.
+"""
+
+from dataclasses import dataclass, field
+from typing import List
+
+
+@dataclass
+class VerificacionAsequibilidad:
+    """Item de verificación de asequibilidad (affordance)"""
+    nombre: str
+    aprobada: bool = False
+    nota: str = ""
+
+
+@dataclass
+class VerificacionAccesibilidad:
+    """Item de verificación de accesibilidad"""
+    nombre: str
+    aprobada: bool = False
+    nota: str = ""
+
+
+@dataclass
+class VerificacionEstetica:
+    """Item de verificación de estética y armonía"""
+    nombre: str
+    aprobada: bool = False
+    nota: str = ""
+
+
+@dataclass
+class EvaluacionDiseno:
+    """Resultado estructurado de la evaluación del diseño"""
+    asequibilidades: List[VerificacionAsequibilidad] = field(default_factory=list)
+    accesibilidades: List[VerificacionAccesibilidad] = field(default_factory=list)
+    esteticas: List[VerificacionEstetica] = field(default_factory=list)
+    mejoras: List[str] = field(default_factory=list)
+
+    @property
+    def total_verificaciones(self) -> int:
+        return len(self.asequibilidades) + len(self.accesibilidades) + len(self.esteticas)
+
+    @property
+    def verificaciones_aprobadas(self) -> int:
+        return (sum(1 for c in self.asequibilidades if c.aprobada)
+                + sum(1 for c in self.accesibilidades if c.aprobada)
+                + sum(1 for c in self.esteticas if c.aprobada))
+
+    @property
+    def puntaje_porcentaje(self) -> int:
+        return int(self.verificaciones_aprobadas / self.total_verificaciones * 100) if self.total_verificaciones else 0
+
+
+class EvaluadorDiseno:
+    """Evaluador cuantitativo y cualitativo de la calidad de diseño"""
+
+    ITEMS_ASEQUIBILIDAD = [
+        ("resalta_importante", "Destacar lo importante: El contenido crítico resalta visualmente (máximo 10% del total)."),
+        ("elimina_distracciones", "Eliminar distracciones: Se han removido todos los elementos que no aportan datos."),
+        ("jerarquia_visual", "Jerarquía visual: Existe una clara jerarquía de lectura establecida."),
+        ("datos_sobresalen", "Datos en primer plano: El elemento de datos destaca por encima de los ejes y bordes."),
+        ("uso_preatentivo", "Uso preatentivo estratégico: Se aplican atributos preatentivos para guiar al lector."),
+    ]
+
+    ITEMS_ACCESIBILIDAD = [
+        ("tiene_titulo_grafico", "Título de gráfico claro: El gráfico posee un título legible."),
+        ("tiene_titulos_eje", "Títulos en los ejes: Cada eje posee una etiqueta descriptiva clara."),
+        ("titulo_accion", "Título declarativo: El título describe la conclusión o acción en lugar de ser meramente descriptivo."),
+        ("fuente_legible", "Legibilidad de fuente: La tipografía y el tamaño de letra permiten leer sin esfuerzo."),
+        ("lenguaje_sencillo", "Lenguaje sencillo: Se evitan tecnicismos innecesarios o abreviaturas confusas."),
+        ("anotaciones_presentes", "Anotaciones en puntos clave: Existen notas explicativas directas sobre puntos sobresalientes."),
+        ("sin_sobrecomplicacion", "Diseño accesible: Se ha evitado añadir demasiadas series o niveles de complejidad."),
+    ]
+
+    ITEMS_ESTETICA = [
+        ("color_inteligente", "Color intencional: Uso de color moderado y estratégico (color para énfasis, gris para fondo)."),
+        ("alineacion_limpia", "Alineación limpia: Los textos y ejes se alinean formando líneas virtuales rectas."),
+        ("espacio_blanco_adecuado", "Preservación del espacio libre: El espacio en blanco permite que el diseño respire."),
+        ("evita_texto_centrado", "Sin bloques de texto centrados: El texto explicativo largo se alinea a la izquierda."),
+        ("consistencia_tamaño", "Consistencia de escala de texto: Los tamaños de letra son homogéneos excepto para énfasis."),
+        ("sensacion_profesional", "Estilo profesional: La combinación de colores y trazos transmite orden y seriedad."),
+    ]
+
+    def __init__(self) -> None:
+        self._evaluacion = EvaluacionDiseno()
+
+    def verificar_asequibilidad(self, clave_item: str, aprobada: bool,
+                                nota: str = "") -> "EvaluadorDiseno":
+        nombre = next((desc for k, desc in self.ITEMS_ASEQUIBILIDAD if k == clave_item), clave_item)
+        self._evaluacion.asequibilidades.append(VerificacionAsequibilidad(nombre=nombre, aprobada=aprobada, nota=nota))
+        return self
+
+    def verificar_accesibilidad(self, clave_item: str, aprobada: bool,
+                                nota: str = "") -> "EvaluadorDiseno":
+        name = next((desc for k, desc in self.ITEMS_ACCESIBILIDAD if k == clave_item), clave_item)
+        self._evaluacion.accesibilidades.append(VerificacionAccesibilidad(nombre=name, aprobada=aprobada, nota=nota))
+        return self
+
+    def verificar_estetica(self, clave_item: str, aprobada: bool,
+                           nota: str = "") -> "EvaluadorDiseno":
+        name = next((desc for k, desc in self.ITEMS_ESTETICA if k == clave_item), clave_item)
+        self._evaluacion.esteticas.append(VerificacionEstetica(nombre=name, aprobada=aprobada, nota=nota))
+        return self
+
+    def auto_evaluar(self, tiene_titulo: bool = False, tiene_titulos_eje: bool = False,
+                     tiene_titulo_accion: bool = False, tiene_anotaciones: bool = False,
+                     color_estrategico: bool = False, alineacion_limpia: bool = False,
+                     espacio_blanco_ok: bool = False, jerarquia_clara: bool = False,
+                     resaltado_limitado: bool = False, distracciones_eliminadas: bool = False,
+                     fuente_legible: bool = True, lenguaje_sencillo: bool = True) -> "EvaluadorDiseno":
+        """Realiza una evaluación automática a partir de banderas de diseño comunes"""
+        self.verificar_asequibilidad("resalta_importante", resaltado_limitado)
+        self.verificar_asequibilidad("elimina_distracciones", distracciones_eliminadas)
+        self.verificar_asequibilidad("jerarquia_visual", jerarquia_clara)
+        self.verificar_accesibilidad("tiene_titulo_grafico", tiene_titulo)
+        self.verificar_accesibilidad("tiene_titulos_eje", tiene_titulos_eje)
+        self.verificar_accesibilidad("titulo_accion", tiene_titulo_accion)
+        self.verificar_accesibilidad("fuente_legible", fuente_legible)
+        self.verificar_accesibilidad("lenguaje_sencillo", lenguaje_sencillo)
+        self.verificar_accesibilidad("anotaciones_presentes", tiene_anotaciones)
+        self.verificar_estetica("color_inteligente", color_estrategico)
+        self.verificar_estetica("alineacion_limpia", alineacion_limpia)
+        self.verificar_estetica("espacio_blanco_adecuado", espacio_blanco_ok)
+        return self
+
+    def agregar_mejora(self, propuesta: str) -> "EvaluadorDiseno":
+        self._evaluacion.mejoras.append(propuesta)
+        return self
+
+    def auto_mejoras(self) -> "EvaluadorDiseno":
+        """Genera sugerencias de mejora automatizadas para los ítems fallidos"""
+        for c in self._evaluacion.asequibilidades:
+            if not c.aprobada:
+                self._evaluacion.mejoras.append(f"[Asequibilidad] Falló: {c.nombre}")
+        for c in self._evaluacion.accesibilidades:
+            if not c.aprobada:
+                self._evaluacion.mejoras.append(f"[Accesibilidad] Falló: {c.nombre}")
+        for c in self._evaluacion.esteticas:
+            if not c.aprobada:
+                self._evaluacion.mejoras.append(f"[Estética] Falló: {c.nombre}")
+        return self
+
+    def construir(self) -> EvaluacionDiseno:
+        return self._evaluacion
+
+    @staticmethod
+    def _renderizar_verificaciones(verificaciones: list, titulo: str) -> str:
+        lineas = [f"### {titulo}\n"]
+        for c in verificaciones:
+            icono = "✅" if c.aprobada else "❌"
+            linea = f"- {icono} {c.nombre}"
+            if c.nota:
+                linea += f" — {c.nota}"
+            lineas.append(linea)
+        aprobadas = sum(1 for c in verificaciones if c.aprobada)
+        lineas.append(f"\nAprobadas: {aprobadas}/{len(verificaciones)}")
+        return "\n".join(lineas)
+
+    @staticmethod
+    def renderizar_markdown(evaluacion: EvaluacionDiseno) -> str:
+        lineas = ["# 🎨 Reporte de Evaluación de Diseño Visual\n"]
+        porcentaje = evaluacion.puntaje_porcentaje
+        etiqueta_calidad = (
+            "🟢 Excelente" if porcentaje >= 90 else
+            "🟡 Bueno" if porcentaje >= 70 else
+            "🟠 Requiere Mejoras" if porcentaje >= 50 else
+            "🔴 Necesita Rediseño Completo"
+        )
+        lineas.append(f"**Resultado Global: {evaluacion.verificaciones_aprobadas}/{evaluacion.total_verificaciones} ({porcentaje}%) — {etiqueta_calidad}**\n")
+
+        if evaluacion.asequibilidades:
+            lineas.append(EvaluadorDiseno._renderizar_verificaciones(evaluacion.asequibilidades, "Asequibilidad y Enfoque"))
+        if evaluacion.accesibilidades:
+            lineas.append("\n" + EvaluadorDiseno._renderizar_verificaciones(evaluacion.accesibilidades, "Accesibilidad"))
+        if evaluacion.esteticas:
+            lineas.append("\n" + EvaluadorDiseno._renderizar_verificaciones(evaluacion.esteticas, "Estética y Formato"))
+
+        if evaluacion.mejoras:
+            lineas.append("\n## Recomendaciones de Mejora\n")
+            for i, imp in enumerate(evaluacion.mejoras, 1):
+                lineas.append(f"{i}. {imp}")
+
+        return "\n".join(lineas)
+
+=========================================================================
+ FIN DE ARCHIVO: narrativa_datos/evaluador_diseno.py
+=========================================================================
+
+
+=========================================================================
+ INICIO DE ARCHIVO: narrativa_datos/narrador.py
+=========================================================================
+"""Constructor y Narrador de Historias con Datos
+
+Permite estructurar una narrativa de datos siguiendo el clásico arco de tres actos:
+Inicio (Contexto/Conflicto), Nudo (Evidencia/Propuestas) y Desenlace (Acción).
+"""
+
+from dataclasses import dataclass, field
+from typing import List, Optional, Dict
+
+
+@dataclass
+class InicioHistoria:
+    """Primer Acto: Inicio"""
+    contexto: str = ""
+    protagonista: str = ""
+    desequilibrio: str = ""
+    equilibrio_deseado: str = ""
+    adelanto_solucion: str = ""
+
+
+@dataclass
+class NudoHistoria:
+    """Segundo Acto: Nudo"""
+    puntos_evidencia: List[str] = field(default_factory=list)
+    puntos_comparacion: List[str] = field(default_factory=list)
+    consecuencias_inaccion: str = ""
+    opciones: List[str] = field(default_factory=list)
+    solucion_recomendada: str = ""
+    por_que_audiencia_unica: str = ""
+
+
+@dataclass
+class DesenlaceHistoria:
+    """Tercer Acto: Desenlace"""
+    llamado_accion: str = ""
+    retorno_inicio: str = ""
+    urgencia: str = ""
+
+
+@dataclass
+class TituloDiapositiva:
+    """Título de una diapositiva en la secuencia narrativa (lógica horizontal)"""
+    orden: int
+    titulo: str
+    es_titulo_accion: bool = True
+
+
+@dataclass
+class EstructuraRepeticion:
+    """Estructura de refuerzo de mensaje (Anuncio-Desarrollo-Repaso)"""
+    anuncio: str = ""
+    desarrollo: str = ""
+    repaso: str = ""
+
+
+@dataclass
+class HistoriaDatos:
+    """Representa la estructura completa de una historia con datos"""
+    titulo: str = ""
+    flujo_narrativo: str = "cronologico"
+    modo_entrega: str = "presentacion_en_vivo"
+    inicio: InicioHistoria = field(default_factory=InicioHistoria)
+    nudo: NudoHistoria = field(default_factory=NudoHistoria)
+    desenlace: DesenlaceHistoria = field(default_factory=DesenlaceHistoria)
+    repeticion: EstructuraRepeticion = field(default_factory=EstructuraRepeticion)
+    titulos_diapositivas: List[TituloDiapositiva] = field(default_factory=list)
+
+    def validar(self) -> List[str]:
+        problemas: List[str] = []
+        if not self.inicio.protagonist if hasattr(self.inicio, 'protagonist') else not self.inicio.protagonista:
+            problemas.append("El protagonista no está definido — la historia debe enmarcarse en torno a la audiencia.")
+        if not self.inicio.desequilibrio:
+            problemas.append("Falta el desequilibrio o conflicto principal — sin conflicto no hay historia.")
+        if not self.desenlace.llamado_accion:
+            problemas.append("Falta el llamado a la acción — la audiencia debe saber exactamente qué hacer al final.")
+        if not self.nudo.puntos_evidencia:
+            problemas.append("Falta la evidencia basada en datos — necesitas números concretos para sostener tu tesis.")
+
+        no_accion = [s for s in self.titulos_diapositivas if not s.es_titulo_accion]
+        if no_accion:
+            problemas.append(f"Hay {len(no_accion)} diapositivas que utilizan títulos descriptivos en lugar de títulos de acción.")
+        return problemas
+
+
+class ConstructorHistoria:
+    """Constructor del flujo narrativo de tres actos"""
+
+    def __init__(self, titulo: str):
+        self._story = HistoriaDatos(title=titulo) if hasattr(HistoriaDatos, 'title') else HistoriaDatos(titulo=titulo)
+
+    def establecer_flujo_narrativo(self, flujo: str = "cronologico",
+                                   modo: str = "presentacion_en_vivo") -> "ConstructorHistoria":
+        self._story.flujo_narrativo = flujo
+        self._story.modo_entrega = modo
+        return self
+
+    def establecer_inicio(self, contexto: str, protagonista: str,
+                           desequilibrio: str, equilibrio_deseado: str,
+                           adelanto_solucion: str = "") -> "ConstructorHistoria":
+        self._story.inicio = InicioHistoria(
+            contexto=contexto, protagonista=protagonista,
+            desequilibrio=desequilibrio, equilibrio_deseado=equilibria if (equilibria := equilibrio_deseado) else "",
+            adelanto_solucion=adelanto_solucion)
+        return self
+
+    def agregar_evidencia(self, punto: str) -> "ConstructorHistoria":
+        self._story.nudo.puntos_evidencia.append(point if (point := punto) else "")
+        return self
+
+    def agregar_comparacion(self, punto: str) -> "ConstructorHistoria":
+        self._story.nudo.puntos_comparacion.append(point if (point := punto) else "")
+        return self
+
+    def establecer_consecuencias(self, texto: str) -> "ConstructorHistoria":
+        self._story.nudo.consecuencias_inaccion = text if (text := texto) else ""
+        return self
+
+    def agregar_opcion(self, opcion: str) -> "ConstructorHistoria":
+        self._story.nudo.opciones.append(option if (option := opcion) else "")
+        return self
+
+    def establecer_recomendacion(self, recomendacion: str) -> "ConstructorHistoria":
+        self._story.nudo.solucion_recomendada = rec if (rec := recomendacion) else ""
+        return self
+
+    def establecer_desenlace(self, llamado_accion: str, retorno_inicio: str = "",
+                             urgencia: str = "") -> "ConstructorHistoria":
+        self._story.desenlace = DesenlaceHistoria(
+            llamado_accion=llamado_accion,
+            retorno_inicio=retorno_inicio, urgencia=urgencia)
+        return self
+
+    def establecer_repeticion(self, anuncio: str, desarrollo: str,
+                              repaso: str) -> "ConstructorHistoria":
+        self._story.repeticion = EstructuraRepeticion(anuncio=anuncio, desarrollo=desarrollo, repaso=repaso)
+        return self
+
+    def agregar_titulo_diapositiva(self, titulo: str,
+                                   es_accion: bool = True) -> "ConstructorHistoria":
+        orden = len(self._story.titulos_diapositivas) + 1
+        self._story.titulos_diapositivas.append(
+            TituloDiapositiva(orden=orden, titulo=titulo, es_titulo_accion=es_accion))
+        return self
+
+    def verificar_logica_horizontal(self) -> List[str]:
+        """Comprueba la lógica horizontal leyendo únicamente los títulos de acción"""
+        problemas: List[str] = []
+        titulos = [s.titulo for s in self._story.titulos_diapositivas]
+        if not titulos:
+            problemas.append("No hay títulos de diapositivas registrados. No se puede verificar la lógica horizontal.")
+            return problemas
+
+        no_accion = [s for s in self._story.titulos_diapositivas if not s.es_titulo_accion]
+        if no_accion:
+            for s in no_accion:
+                problemas.append(f"La diapositiva {s.orden} '{s.titulo}' tiene un título meramente descriptivo. Se sugiere cambiar a título de acción.")
+        return problemas
+
+    def construir(self) -> HistoriaDatos:
+        return self._story
+
+    @staticmethod
+    def renderizar_markdown(story: HistoriaDatos) -> str:
+        problemas = story.validar()
+        advertencias = ""
+        if problemas:
+            elementos = "\n".join(f"- ⚠️ {p}" for p in problemas)
+            advertencias = f"\n## ⚠️ Aspectos Narrativos por Mejorar\n{elementos}\n"
+
+        evidencia = "\n".join(f"- 📊 {e}" for e in story.nudo.puntos_evidencia) if story.nudo.puntos_evidencia else "- (Sin especificar)"
+        comparaciones = "\n".join(f"- 🔄 {c}" for c in story.nudo.puntos_comparacion) if story.nudo.puntos_comparacion else ""
+        opciones = "\n".join(f"- 💡 {o}" for o in story.nudo.opciones) if story.nudo.opciones else ""
+        diapositivas = ""
+        if story.titulos_diapositivas:
+            diapositivas = "\n".join(
+                f"{s.orden}. {'✅' if s.es_titulo_accion else '❌'} {s.titulo}"
+                for s in story.titulos_diapositivas)
+
+        flujo_legible = story.flujo_narrativo.replace("_", " ").capitalize()
+        modo_legible = story.modo_entrega.replace("_", " ").capitalize()
+
+        return f"""# 📖 Historia con Datos: {story.titulo}
+{advertencias}
+## Estructura Narrativa de Tres Actos
+
+### Primer Acto: Inicio (Contexto y Conflicto)
+- **Contexto**: {story.inicio.contexto or '(No definido)'}
+- **Protagonista**: {story.inicio.protagonista or '(Falta definir el protagonista)'}
+- **Desequilibrio (Conflicto)**: {story.inicio.desequilibrio or '(Falta el desequilibrio central)'}
+- **Equilibrio Deseado**: {story.inicio.equilibrio_deseado or '(No definido)'}
+
+### Segundo Acto: Nudo (Evidencia de Datos)
+**Evidencia Basada en Datos**:
+{evidencia}
+{f"**Puntos de Comparación**:{chr(10)}{comparaciones}" if comparaciones else ""}
+{f"**Consecuencias de la Inacción**: {story.nudo.consecuencias_inaccion}" if story.nudo.consecuencias_inaccion else ""}
+{f"**Opciones Analizadas**:{chr(10)}{opciones}" if opciones else ""}
+{f"**Solución Recomendada**: {story.nudo.solucion_recomendada}" if story.nudo.solucion_recomendada else ""}
+
+### Tercer Acto: Desenlace (Resolución)
+- **Llamado a la Acción**: {story.desenlace.llamado_accion or '(No definido)'}
+- **Retorno al Inicio**: {story.desenlace.retorno_inicio or '(No definido)'}
+{f"- **Urgencia**: {story.desenlace.urgency if hasattr(story.desenlace, 'urgency') else story.desenlace.urgencia}" if story.desenlace.urgencia else ""}
+
+## Diseño Narrativo
+- **Flujo Narrativo**: {flujo_legible}
+- **Modo de Entrega**: {modo_legible}
+
+{f'''## Estructura de Refuerzo (Anuncio, Desarrollo, Repaso)
+- **Anuncio**: {story.repeticion.anuncio}
+- **Desarrollo**: {story.repeticion.desarrollo}
+- **Repaso**: {story.repeticion.repaso}
+''' if story.repeticion.anuncio else ''}
+{f"## Secuencia de Diapositivas (Lógica Horizontal){chr(10)}{diapositivas}" if diapositivas else ""}
+"""
+
+=========================================================================
+ FIN DE ARCHIVO: narrativa_datos/narrador.py
+=========================================================================
+
+
+=========================================================================
+ INICIO DE ARCHIVO: narrativa_datos/plantillas.py
+=========================================================================
+"""Plantillas de Reportes de Narrativa con Datos
+
+Define las estructuras de textos en Markdown y las listas de comprobación en español.
+"""
+
+from typing import Dict, List
+
+# ── Plantilla de Reporte de Contexto ──
+REPORTE_CONTEXTO_PLANTILLA = """# 📋 Reporte de Análisis de Contexto: {title}
+
+## Perfil de la Audiencia
+| Dimensión | Detalle |
+|-----------|---------|
+| Audiencia Principal | {audience} |
+| Tomador de Decisiones | {decision_maker} |
+| Nivel de Conocimiento | {knowledge_level} |
+| Estado de Relación | {relationship} |
+| Motivación Principal | {motivation} |
+
+## Mecanismo de Comunicación
+- **Formato**: {mechanism}
+- **Tono General**: {tone}
+
+## Mensaje Central
+### Historia de 3 Minutos
+{three_min_story}
+
+### Idea Fuerza (Big Idea)
+> {big_idea}
+
+### Datos de Soporte
+{supporting_data}
+
+### Riesgos y Contraevidencia
+{risks}
+
+## Llamado a la Acción (Call to Action)
+{call_to_action}
+"""
+
+# ── Plantilla de Reporte de Selección de Gráfico ──
+REPORTE_SELECCION_GRAFICO_PLANTILLA = """# 📊 Recomendación de Tipo de Gráfico
+
+## Propiedades de los Datos
+- **Tipo de datos**: {data_type}
+- **Número de series de datos**: {series_count}
+- **Número de categorías**: {category_count}
+- **Contiene dimensión temporal**: {has_time}
+
+## Gráficos Recomendados
+### Gráfico Recomendado (Principal): {primary_chart}
+{primary_reason}
+
+### Alternativa: {secondary_chart}
+{secondary_reason}
+
+## Gráficos a Evitar
+{avoid_charts}
+
+## Puntos Clave de Diseño
+{design_notes}
+"""
+
+# ── Plantilla de Reporte de Depuración de Ruido Visual ──
+REPORTE_DEPURACION_RUIDO_PLANTILLA = """# 🧹 Reporte de Depuración de Ruido Visual
+
+## Resumen del Diagnóstico
+- **Elementos de ruido detectados**: {clutter_count}
+- **Porcentaje de reducción de carga cognitiva estimado**: {reduction_pct}%
+
+## Inventario de Ruido Visual Detectado
+{clutter_items}
+
+## Pasos Recomendados de Depuración
+{declutter_steps}
+
+## Propuestas de Aplicación Gestalt
+{gestalt_suggestions}
+"""
+
+# ── Plantilla de Reporte de Atención Visual ──
+REPORTE_ATENCION_PLANTILLA = """# 🎯 Planificación de Atención Visual
+
+## Análisis de Focos de Atención
+{current_focus}
+
+## Recomendaciones sobre Atributos Preatentivos
+{preattentive_suggestions}
+
+## Estrategia de Color Recomendada
+- **Estrategia sugerida**: {color_strategy}
+- **Color Base (Fondo)**: {base_color}
+- **Color de Énfasis**: {accent_color}
+{color_notes}
+
+## Jerarquía Visual de Lectura
+{visual_hierarchy}
+"""
+
+# ── Plantilla de Reporte de Evaluación de Diseño ──
+REPORTE_EVALUACION_DISENO_PLANTILLA = """# 🎨 Reporte de Evaluación de Diseño Visual
+
+## Asequibilidad (Percepción de Funciones)
+{affordances}
+
+## Accesibilidad
+{accessibility}
+
+## Estética y Formato
+{aesthetics}
+
+## Plan de Mejoras
+{improvements}
+"""
+
+# ── Plantilla de Construcción de Historia ──
+REPORTE_HISTORIA_PLANTILLA = """# 📖 Construcción de Historia con Datos
+
+## Estructura Narrativa de Tres Actos
+
+### Primer Acto: Inicio (Contexto y Conflicto)
+- **Contexto**: {setting}
+- **Protagonista**: {protagonist} (enfocado en la audiencia)
+- **Desequilibrio (Conflicto)**: {imbalance}
+- **Equilibrio Deseado**: {desired_balance}
+
+### Segundo Acto: Nudo (Evidencia de Datos)
+{middle_content}
+
+### Tercer Acto: Desenlace (Resolución)
+- **Llamado a la Acción**: {call_to_action}
+- **Retorno al Inicio**: {tie_back}
+
+## Diseño Narrativo
+- **Flujo Narrativo**: {narrative_flow}
+- **Modo de Entrega**: {delivery_mode}
+
+## Estructura de Refuerzo (Anuncio, Desarrollo, Repaso)
+- **Anuncio (Bing)**: {bing}
+- **Desarrollo (Bang)**: {bang}
+- **Repaso (Bongo)**: {bongo}
+
+## Secuencia de Diapositivas (Lógica Horizontal)
+{slide_titles}
+"""
+
+# ── Plantilla de Diagnóstico Completo ──
+REPORTE_DIAGNOSTICO_PLANTILLA = """# 🔍 Reporte de Diagnóstico Completo SWD: {title}
+
+## Calificación General: {total_score}/100 {score_badge}
+
+{dimension_details}
+
+## Plan de Mejoras Prioritarias (Top 3)
+{top_improvements}
+
+## Recomendaciones de Transformación Antes/Después
+{makeover_suggestions}
+"""
+
+# ── Plantilla de Reporte de Rediseño (Makeover) ──
+REPORTE_REDISEÑO_PLANTILLA = """# ✨ Plan de Rediseño y Transformación: {title}
+
+## Diagnóstico de Defectos Originales
+{original_issues}
+
+## Pasos de Transformación (Método SWD)
+{makeover_steps}
+
+## Especificaciones del Diseño Propuesto
+{design_spec}
+
+## Secuencia Narrativa de Diapositivas
+{narrative_enhancement}
+"""
+
+# ── Lista de Comprobación de Gráficos SWD ──
+LISTA_COMPROBACION_GRAFICO: List[tuple] = [
+    ("Título de acción", "Usar título declarativo con conclusión en lugar de descriptivo."),
+    ("Títulos de eje", "Cada eje debe tener una etiqueta clara que indique las unidades."),
+    ("Línea base cero", "Los gráficos de barra deben comenzar estrictamente en cero."),
+    ("Intervalos de tiempo", "Mantener intervalos temporales constantes y proporcionales."),
+    ("Etiquetado directo", "Rotular directamente las series de datos y evitar leyendas externas."),
+    ("Bordes de gráfico", "Remover bordes limitantes exteriores innecesarios."),
+    ("Líneas de cuadrícula", "Remover o atenuar líneas de fondo haciéndolas de color gris tenue."),
+    ("Marcadores de datos", "Remover puntos en cada coordenada, usándolos solo para énfasis."),
+    ("Ceros decimales", "Quitar decimales finales redundantes en los ejes numéricos."),
+    ("Esquema de color", "Usar colores selectivos (gris de base y un único color destacado)."),
+    ("Unidades legibles", "Mantener símbolos de porcentaje, moneda y comas de millares."),
+    ("Fuente de datos", "Citar el origen de los datos al pie del gráfico."),
+]
+
+# ── Plantillas de Detalles de Estrategias de Color ──
+PLANTILLAS_ESTRATEGIAS_COLOR: Dict[str, Dict[str, str]] = {
+    "gris_mas_uno": {
+        "nombre": "Gris como base + un único color de énfasis",
+        "base": "Gris claro o medio (#808080)",
+        "enfasis": "Azul (#4472C4)",
+        "negativo": "Naranja (#ED7D31)",
+        "descripcion": "Todos los elementos secundarios en tonos grises; el foco se colorea con un color llamativo. Es la técnica más recomendada.",
+    },
+    "secuencial": {
+        "nombre": "Gradiente secuencial monocromático",
+        "base": "Celeste claro (#D6E4F0)",
+        "enfasis": "Azul oscuro (#1F4E79)",
+        "negativo": "",
+        "descripcion": "Variación de brillo e intensidad de un mismo tono. Ideal para mapas de calor o tablas ordenadas.",
+    },
+    "divergente": {
+        "nombre": "Gradiente divergente bicolor",
+        "base": "Gris neutro (#808080)",
+        "enfasis": "Azul para positivos (#4472C4)",
+        "negativo": "Naranja para negativos (#ED7D31)",
+        "descripcion": "Dos tonos de color opuestos que contrastan desde un punto medio gris. Ideal para saldos de caja o ganancias y pérdidas.",
+    },
+    "categorico_limitado": {
+        "nombre": "Colores categóricos selectivos",
+        "base": "Gris (#808080)",
+        "enfasis": "Azul (#4472C4)",
+        "negativo": "",
+        "descripcion": "Uso de máximo 3 o 4 colores bien diferenciados para distinguir categorías sin confundir visualmente.",
+    },
+}
+
+=========================================================================
+ FIN DE ARCHIVO: narrativa_datos/plantillas.py
+=========================================================================
+
+
+=========================================================================
+ INICIO DE ARCHIVO: narrativa_datos/redisenador.py
+=========================================================================
+"""Motor de Rediseño y Transformación de Gráficos (Makeover)
+
+Guía el proceso de transformación paso a paso desde un gráfico original deficiente
+hasta una historia con datos efectiva utilizando el método de las seis lecciones SWD.
+"""
+
+from dataclasses import dataclass, field
+from typing import List, Optional
+
+
+@dataclass
+class PasoRediseño:
+    """Representa un paso individual en la transformación del gráfico"""
+    orden: int
+    leccion: str                   # Nombre corto de la lección SWD correspondiente
+    accion: str
+    antes_desc: str = ""
+    despues_desc: str = ""
+    fundamento: str = ""
+
+
+@dataclass
+class EspecificacionDiseno:
+    """Normas de diseño del gráfico final rediseñado"""
+    tipo_grafico: str = ""
+    titulo: str = ""
+    tipo_titulo: str = "accion"     # accion / descriptivo
+    color_base: str = "Gris"
+    color_enfasis: str = "Azul"
+    alineacion: str = "Alineado a la izquierda (arriba)"
+    fuente: str = "Sans-serif (ej. Arial, Helvetica)"
+    etiquetas_datos: str = "Etiquetado directo sobre las series"
+    tratamiento_ejes: str = "Gris claro, sin marcas de división innecesarias"
+    anotaciones: List[str] = field(default_factory=list)
+    fuente_datos: str = ""
+
+
+@dataclass
+class DiapositivaNarrativa:
+    """Representa una diapositiva en una secuencia de revelación progresiva"""
+    orden: int
+    titular: str
+    enfasis: str = ""
+    voz_en_off: str = ""
+
+
+@dataclass
+class PlanRediseño:
+    """Plan integral de rediseño de un gráfico"""
+    titulo: str = ""
+    problemas_originales: List[str] = field(default_factory=list)
+    pasos: List[PasoRediseño] = field(default_factory=list)
+    especificacion_diseno: EspecificacionDiseno = field(default_factory=EspecificacionDiseno)
+    diapositivas_narrativas: List[DiapositivaNarrativa] = field(default_factory=list)
+
+
+class RedisenadorGrafico:
+    """Motor de rediseño — Implementación paso a paso de las seis lecciones SWD"""
+
+    SEIS_LECCIONES = [
+        ("contexto", "Comprender el contexto", "Identificar a la audiencia, el propósito y destilar la Idea Fuerza."),
+        ("visual", "Elegir la visualización adecuada", "Seleccionar el tipo de gráfico idóneo según la naturaleza de los datos."),
+        ("ruido", "Eliminar el ruido visual", "Remover bordes, cuadrículas de fondo, marcas divisorias y decimales redundantes."),
+        ("atencion", "Dirigir la atención", "Guiar la mirada del lector usando color de forma selectiva y variando tamaños de fuente."),
+        ("diseno", "Pensar como un diseñador", "Optimizar la alineación a la izquierda, usar títulos declarativos e incluir notas directas."),
+        ("historia", "Contar una historia", "Estructurar un arco de tres actos y usar la revelación progresiva en la presentación."),
+    ]
+
+    def __init__(self, titulo: str = "") -> None:
+        self._plan = PlanRediseño(titulo=titulo)
+
+    def agregar_problema(self, problema: str) -> "RedisenadorGrafico":
+        self._plan.problemas_originales.append(problema)
+        return self
+
+    def agregar_paso(self, leccion: str, accion: str,
+                     antes: str = "", despues: str = "",
+                     fundamento: str = "") -> "RedisenadorGrafico":
+        orden = len(self._plan.pasos) + 1
+        self._plan.pasos.append(PasoRediseño(
+            orden=orden, leccion=leccion, accion=accion,
+            antes_desc=antes, despues_desc=despues, fundamento=fundamento))
+        return self
+
+    def establecer_especificacion_diseno(self, tipo_grafico: str = "", titulo: str = "",
+                                         color_enfasis: str = "Azul",
+                                         anotaciones: Optional[List[str]] = None,
+                                         fuente_datos: str = "") -> "RedisenadorGrafico":
+        self._plan.especificacion_diseno = EspecificacionDiseno(
+            tipo_grafico=tipo_grafico, titulo=titulo,
+            color_enfasis=color_enfasis,
+            anotaciones=anotaciones or [],
+            fuente_datos=fuente_datos)
+        return self
+
+    def agregar_diapositiva_narrativa(self, titular: str, enfasis: str = "",
+                                      voz_en_off: str = "") -> "RedisenadorGrafico":
+        orden = len(self._plan.diapositivas_narrativas) + 1
+        self._plan.diapositivas_narrativas.append(DiapositivaNarrativa(
+            orden=orden, titular=titular,
+            enfasis=enfasis, voz_en_off=voz_en_off))
+        return self
+
+    def auto_pasos_desde_problemas(self) -> "RedisenadorGrafico":
+        """Genera de forma automática los pasos del plan de rediseño a partir de los problemas ingresados"""
+        mapa_problemas = {
+            "circular": ("visual", "Sustituir el gráfico circular por un gráfico de barras horizontales", "El ojo humano no compara áreas ni ángulos con facilidad."),
+            "tarta": ("visual", "Sustituir el gráfico de tarta por barras horizontales", "El ojo humano no compara áreas ni ángulos con facilidad."),
+            "pie": ("visual", "Sustituir el gráfico circular por barras horizontales", "El ojo humano no compara áreas de sectores circulares con facilidad."),
+            "dona": ("visual", "Reemplazar el gráfico de dona por barras horizontales", "Las donas dificultan aún más la lectura al tener que evaluar longitudes de arco."),
+            "3d": ("visual", "Eliminar efectos 3D y cambiar a versión 2D plana", "Los efectos tridimensionales distorsionan la escala visual de los datos y confunden."),
+            "doble eje": ("visual", "Separar en dos gráficos individuales con eje común o etiquetar puntos", "El doble eje y dificulta asociar cada serie a su eje numérico correspondiente."),
+            "sin titulo": ("diseno", "Añadir un título declarativo de acción", "El título de acción informa inmediatamente a la audiencia sobre la conclusión clave."),
+            "sin etiquetas de eje": ("diseno", "Agregar etiquetas explícitas a los ejes", "Los ejes deben tener nombres descriptivos claros para entender las escalas de medida."),
+            "leyenda": ("ruido", "Etiquetar directamente las series de datos y quitar la leyenda alejada", "Se elimina el esfuerzo mental de saltar constantemente de la leyenda al gráfico."),
+            "cuadricula": ("ruido", "Atenuar o remover las líneas de cuadrícula del fondo", "Las cuadrículas gruesas compiten con el elemento principal de datos."),
+            "borde": ("ruido", "Quitar los bordes limitantes exteriores del gráfico", "Uso del principio de cierre Gestalt: el espacio blanco ya delimita el gráfico."),
+            "muchos colores": ("atencion", "Reducir la paleta a tonos de gris y un único color de énfasis", "El exceso de colores satura y destruye el efecto preatentivo de focalización."),
+            "colorines": ("atencion", "Reducir la paleta a tonos de gris y un único color de énfasis", "Demasiados colores compiten entre sí y anulan la atención selectiva."),
+            "texto inclinado": ("ruido", "Abreviar etiquetas del eje X para ponerlas horizontales", "Los textos inclinados o en diagonal reducen un 52% la velocidad de lectura."),
+            "diagonal": ("ruido", "Abreviar etiquetas del eje X para ponerlas horizontales", "Los textos inclinados o en diagonal reducen un 52% la velocidad de lectura."),
+            "centrado": ("diseno", "Alinear todos los bloques de texto a la izquierda", "La alineación izquierda crea líneas virtuales limpias para un escaneo visual ordenado."),
+            "sin llamado a la accion": ("historia", "Definir e incluir un llamado a la acción final nítido", "La narrativa debe cerrarse siempre indicando qué acción o decisión se espera."),
+        }
+        for problema in self._plan.problemas_originales:
+            problema_lc = problema.lower()
+            for clave_busqueda, (leccion, accion, fundamento) in mapa_problemas.items():
+                if clave_busqueda in problema_lc:
+                    self.agregar_paso(leccion, accion, antes=problema, fundamento=fundamento)
+                    break
+        return self
+
+    def construir(self) -> PlanRediseño:
+        return self._plan
+
+    @staticmethod
+    def renderizar_markdown(plan: PlanRediseño) -> str:
+        lineas = [f"# ✨ Plan de Rediseño y Transformación: {plan.titulo}\n"]
+
+        if plan.problemas_originales:
+            lineas.append("## Diagnóstico de Defectos Originales\n")
+            for i, issue in enumerate(plan.problemas_originales, 1):
+                lineas.append(f"{i}. ❌ {issue}")
+
+        if plan.pasos:
+            lineas.append("\n## Pasos de Transformación (Método SWD)\n")
+            for paso in plan.pasos:
+                etiqueta_leccion = next(
+                    (etiqueta for clave, etiqueta, _ in RedisenadorGrafico.SEIS_LECCIONES
+                     if clave == paso.leccion), paso.leccion)
+                lineas.append(f"### Paso {paso.orden}: [{etiqueta_leccion}] {paso.accion}")
+                if paso.antes_desc:
+                    lineas.append(f"- **Estado anterior**: {paso.antes_desc}")
+                if paso.despues_desc:
+                    lineas.append(f"- **Mejora aplicada**: {paso.despues_desc}")
+                if paso.fundamento:
+                    lineas.append(f"- **Fundamento teórico**: {paso.fundamento}")
+                lineas.append("")
+
+        ds = plan.especificacion_diseno
+        if ds.tipo_grafico or ds.titulo:
+            lineas.append("## Especificaciones del Diseño Propuesto\n")
+            lineas.append("| Dimensión de Diseño | Especificación Recomenda |")
+            lineas.append("|---------------------|--------------------------|")
+            if ds.tipo_grafico:
+                lineas.append(f"| Tipo de Gráfico | {ds.tipo_grafico} |")
+            if ds.titulo:
+                lineas.append(f"| Título del Gráfico | {ds.titulo} (Título de {ds.tipo_titulo.capitalize()}) |")
+            lineas.append(f"| Paleta Base | {ds.color_base} |")
+            lineas.append(f"| Color de Contraste | {ds.color_enfasis} |")
+            lineas.append(f"| Alineación Textos | {ds.alineacion} |")
+            lineas.append(f"| Familia Tipográfica | {ds.fuente} |")
+            lineas.append(f"| Rotulado de Datos | {ds.etiquetas_datos} |")
+            lineas.append(f"| Tratamiento de Ejes | {ds.tratamiento_ejes} |")
+            if ds.fuente_datos:
+                lineas.append(f"| Origen de Datos | {ds.fuente_datos} |")
+            if ds.anotaciones:
+                lineas.append("\n**Notas y Anotaciones en el Gráfico**:")
+                for a in ds.anotaciones:
+                    lineas.append(f"- {a}")
+
+        if plan.diapositivas_narrativas:
+            lineas.append("\n## Secuencia Narrativa de Diapositivas (Revelación Progresiva)\n")
+            for slide in plan.diapositivas_narrativas:
+                lineas.append(f"### Diapositiva {slide.orden}")
+                lineas.append(f"**Titular**: {slide.titular}")
+                if slide.enfasis:
+                    lineas.append(f"**Elemento a destacar**: {slide.enfasis}")
+                if slide.voz_en_off:
+                    lineas.append(f"**Guion de voz en off (Discurso)**: {slide.voz_en_off}")
+                lineas.append("")
+
+        return "\n".join(lineas)
+
+=========================================================================
+ FIN DE ARCHIVO: narrativa_datos/redisenador.py
+=========================================================================
+
+
+=========================================================================
+ INICIO DE ARCHIVO: narrativa_datos/diagnostico.py
+=========================================================================
+"""Motor de Diagnóstico Completo
+
+Proporciona un diagnóstico integral de 5 dimensiones con escala cuantitativa de 0 a 100 puntos
+y sugerencias de mejora automatizadas.
+"""
+
+from dataclasses import dataclass, field
+from typing import List, Dict
+
+from .config import DIMENSIONES_DIAGNOSTICO, ETIQUETAS_DIAGNOSTICO
+
+
+@dataclass
+class PuntajeDimension:
+    """Puntuación en una dimensión específica"""
+    dimension: str
+    elementos: List[tuple] = field(default_factory=list)  # (nombre, puntaje, maximo, nota)
+
+    @property
+    def puntaje(self) -> int:
+        return sum(s for _, s, _, _ in self.elementos)
+
+    @property
+    def puntaje_maximo(self) -> int:
+        return sum(m for _, _, m, _ in self.elementos)
+
+    @property
+    def etiqueta(self) -> str:
+        return ETIQUETAS_DIAGNOSTICO.get(self.dimension, self.dimension)
+
+
+@dataclass
+class ResultadoDiagnostico:
+    """Consolidado de resultados del diagnóstico"""
+    titulo: str = ""
+    dimensiones: Dict[str, PuntajeDimension] = field(default_factory=dict)
+    mejoras_prioritarias: List[str] = field(default_factory=list)
+    sugerencias_rediseño: List[str] = field(default_factory=list)
+
+    @property
+    def puntaje_total(self) -> int:
+        return sum(d.puntaje for d in self.dimensiones.values())
+
+    @property
+    def maximo_total(self) -> int:
+        return sum(d.puntaje_maximo for d in self.dimensiones.values())
+
+    @property
+    def insignia(self) -> str:
+        s = self.puntaje_total
+        t = self.maximo_total
+        pct = s / t * 100 if t else 0
+        if pct >= 90: return f"🟢 {s}/{t} Excelente (Listo para reportar)"
+        if pct >= 70: return f"🟡 {s}/{t} Aceptable (Se sugiere pulir)"
+        if pct >= 50: return f"🟠 {s}/{t} Requiere Mejoras"
+        return f"🔴 {s}/{t} Debe Rediseñarse"
+
+
+# ── Items de Puntuación por Dimensión ──
+ITEMS_CONTEXTO = [
+    ("audiencia_clara", "¿La audiencia objetivo está definida y los mensajes están dirigidos a ella?"),
+    ("accion_clara", "¿El llamado a la acción es preciso y fácil de comprender?"),
+    ("idea_fuerza_visible", "¿La Idea Fuerza se reconoce fácilmente en los primeros 5 segundos?"),
+    ("datos_sostienen_tesis", "¿Los datos demuestran y sostienen la historia en lugar de solo mostrarse?"),
+]
+
+ITEMS_VISUAL = [
+    ("tipo_grafico_correcto", "¿El tipo de gráfico es adecuado para el perfil de los datos y el propósito?"),
+    ("evita_graficos_complejos", "¿Se han evitado gráficos circulares, 3D o con doble eje Y?"),
+    ("linea_base_cero", "¿Las barras tienen su línea base fija exactamente en cero?"),
+    ("orden_logico", "¿Las categorías están ordenadas de forma lógica y estructurada?"),
+]
+
+ITEMS_RUIDO = [
+    ("sin_elementos_redundantes", "¿Se han eliminado bordes, cuadrículas y etiquetas redundantes?"),
+    ("sin_texto_diagonal", "¿Se han evitado los textos en inclinaciones diagonales y alineaciones centradas?"),
+    ("espacio_libre_adecuado", "¿El espacio en blanco rodea y equilibra los bloques del gráfico?"),
+    ("leyendas_integradas", "¿Se evitan leyendas separadas etiquetando directamente los datos?"),
+]
+
+ITEMS_ATENCION = [
+    ("uso_resaltado_preatentivo", "¿Se usan atributos preatentivos de forma intencional para captar la mirada?"),
+    ("escasez_color", "¿El uso del color es sobrio y con fines de contraste (gris de fondo)?"),
+    ("jerarquia_visual_clara", "¿Se reconoce la jerarquía de lectura del gráfico a primera vista?"),
+    ("prueba_ojos_cerrados", "¿La prueba de enfoque ('dónde mira primero') coincide con el dato clave?"),
+]
+
+ITEMS_DISENO = [
+    ("texto_descriptivo_adecuado", "¿El gráfico incluye título de acción, títulos de eje y fuentes legibles?"),
+    ("alineacion_profesional", "¿Las tipografías y ejes visuales se alinean correctamente?"),
+    ("estructura_tres_actos", "¿La presentación de los datos tiene una estructura de Inicio, Nudo y Desenlace?"),
+    ("titulo_de_accion", "¿El título principal concluye en lugar de solo describir el tema del gráfico?"),
+]
+
+TODOS_ITEMS_DIMENSION = {
+    "contexto": ITEMS_CONTEXTO,
+    "seleccion_visual": ITEMS_VISUAL,
+    "ruido": ITEMS_RUIDO,
+    "atencion": ITEMS_ATENCION,
+    "diseno_narrativa": ITEMS_DISENO,
+}
+
+
+class MotorDiagnostico:
+    """Motor de evaluación de 5 dimensiones"""
+
+    def __init__(self, titulo: str = "") -> None:
+        self._resultado = ResultadoDiagnostico(titulo=titulo)
+        for dim in DIMENSIONES_DIAGNOSTICO:
+            self._resultado.dimensiones[dim] = PuntajeDimension(dimension=dim)
+
+    def calificar(self, dimension: str, clave_item: str, puntaje: int,
+                  nota: str = "") -> "MotorDiagnostico":
+        if dimension not in self._resultado.dimensiones:
+            raise ValueError(f"Dimensión de diagnóstico desconocida: {dimension}")
+        items = TODOS_ITEMS_DIMENSION.get(dimension, [])
+        nombre = next((desc for k, desc in items if k == clave_item), clave_item)
+        self._resultado.dimensiones[dimension].elementos.append((nombre, puntaje, 5, nota))
+        return self
+
+    def auto_calificar(self, puntajes: Dict[str, Dict[str, int]]) -> "MotorDiagnostico":
+        """Calificación por lotes"""
+        for dim, items in puntajes.items():
+            for clave_item, sc in items.items():
+                self.calificar(dim, clave_item, sc)
+        return self
+
+    def agregar_mejora(self, sugerencia: str) -> "MotorDiagnostico":
+        self._resultado.mejoras_prioritarias.append(sugerencia)
+        return self
+
+    def agregar_rediseño(self, sugerencia: str) -> "MotorDiagnostico":
+        self._resultado.sugerencias_rediseño.append(sugerencia)
+        return self
+
+    def auto_mejoras(self) -> "MotorDiagnostico":
+        """Identifica ítems con baja calificación para proponer mejoras recomendadas"""
+        elementos_bajos = []
+        for dim, ds in self._resultado.dimensiones.items():
+            for nombre, sc, maximo, nota in ds.elementos:
+                if sc <= 2:
+                    elementos_bajos.append((sc, dim, nombre, nota))
+        elementos_bajos.sort(key=lambda x: x[0])
+        for sc, dim, nombre, nota in elementos_bajos[:5]:
+            etiqueta = ETIQUETAS_DIAGNOSTICO.get(dim, dim)
+            self._resultado.mejoras_prioritarias.append(f"[{etiqueta}] {nombre}" + (f" — {nota}" if nota else ""))
+        return self
+
+    def construir(self) -> ResultadoDiagnostico:
+        return self._resultado
+
+    @staticmethod
+    def renderizar_markdown(result: ResultadoDiagnostico) -> str:
+        lineas = [f"# 🔍 Reporte de Diagnóstico Completo SWD: {result.titulo}\n"]
+        lineas.append(f"## Evaluación General: {result.insignia}\n")
+
+        for dim in DIMENSIONES_DIAGNOSTICO:
+            ds = result.dimensiones.get(dim)
+            if not ds or not ds.elementos:
+                continue
+            lineas.append(f"### {ds.etiqueta} ({ds.puntaje}/{ds.puntaje_maximo})\n")
+            lineas.append("| Aspecto Evaluado | Calificación | Comentario |")
+            lineas.append("|------------------|--------------|------------|")
+            for nombre, sc, mx, note in ds.elementos:
+                barra = "█" * sc + "░" * (mx - sc)
+                lineas.append(f"| {nombre} | {barra} {sc}/{mx} | {note or ''} |")
+            lineas.append("")
+
+        if result.mejoras_prioritarias:
+            lineas.append("## Plan de Mejoras Prioritarias\n")
+            for i, imp in enumerate(result.mejoras_prioritarias, 1):
+                lineas.append(f"{i}. {imp}")
+
+        if result.sugerencias_rediseño:
+            lineas.append("\n## Sugerencias de Rediseño Avanzado\n")
+            for s in result.sugerencias_rediseño:
+                lineas.append(f"- {s}")
+
+        return "\n".join(lineas)
+
+=========================================================================
+ FIN DE ARCHIVO: narrativa_datos/diagnostico.py
+=========================================================================
+
+
+=========================================================================
+ INICIO DE ARCHIVO: tests/test_narrativa.py
+=========================================================================
+"""Conjunto de Pruebas Unitarias de Narrativa con Datos
+
+Valida las 8 capacidades y métodos de utilidad de la fachada principal `NarrativaDatos`.
+Cada prueba unitaria contiene aserciones e imprime su estado en español.
+"""
+
+import sys
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8')
+if hasattr(sys.stderr, 'reconfigure'):
+    sys.stderr.reconfigure(encoding='utf-8')
+from pathlib import Path
+
+# Agregar la raíz del proyecto al sys.path para poder importar el módulo localmente
+raiz_proyecto = str(Path(__file__).resolve().parent.parent)
+if raiz_proyecto not in sys.path:
+    sys.path.insert(0, raiz_proyecto)
+
+from narrativa_datos import NarrativaDatos
+
+
+# ────────────────────────────────────────────
+# Prueba 1: Análisis de Contexto
+# ────────────────────────────────────────────
+def test_crear_contexto():
+    narrativa = NarrativaDatos("Reporte de Ventas Q4")
+    resultado = narrativa.crear_contexto(
+        audiencia="Comité Ejecutivo",
+        llamado_accion="Aprobar presupuesto de optimización",
+        idea_fuerza="La caída en la conversión se debe al flujo de registro; invertir 50k recuperará un 10% de transacciones.",
+        historia_tres_minutos="Nuestra conversión web cayó tras el rediseño. Necesitamos corregir el formulario de registro.",
+        datos_soporte=["Tasa de abandono de formulario subió al 65%", "NPS cayó 15 puntos"],
+        riesgos=["La corrección tomará 3 semanas de desarrollo"],
+    )
+
+    assert isinstance(resultado, str), "El resultado debe ser una cadena de texto"
+    assert len(resultado) > 50, "El reporte no debe estar vacío"
+    assert "Comité Ejecutivo" in resultado, "El reporte debe incluir la audiencia"
+    assert "Aprobar" in resultado, "El reporte debe contener el llamado a la acción"
+    assert "Contexto" in resultado, "El reporte debe incluir el título de contexto"
+    print("✅ test_crear_contexto passed")
+
+
+# ────────────────────────────────────────────
+# Prueba 2: Recomendación de Tipo de Gráfico
+# ────────────────────────────────────────────
+def test_recomendar_grafico():
+    narrativa = NarrativaDatos("Evaluación Visual")
+
+    # Caso A: Tendencia temporal continua
+    resultado_lineas = narrativa.recomendar_grafico(
+        tipo_datos="continuo", tiene_tiempo=True, cantidad_series=2, cantidad_categorias=12
+    )
+    assert isinstance(resultado_lineas, str), "Debe retornar una cadena de texto"
+    assert "Línea" in resultado_lineas, "Los datos continuos temporales deben sugerir líneas"
+
+    # Caso B: Datos categóricos con etiquetas largas
+    resultado_barras = narrativa.recomendar_grafico(
+        tipo_datos="categorico", cantidad_categorias=7, nombres_categorias_largos=True
+    )
+    assert "Horizontales" in resultado_barras, "Etiquetas largas deben sugerir barras horizontales"
+    print("✅ test_recomendar_grafico passed")
+
+
+# ────────────────────────────────────────────
+# Prueba 3: Depuración de Ruido Visual
+# ────────────────────────────────────────────
+def test_diagnosticar_ruido():
+    narrativa = NarrativaDatos("Gráfico de Clientes")
+    resultado = narrativa.diagnosticar_ruido(
+        tiene_bordes=True,
+        tiene_cuadriculas=True,
+        tiene_leyenda_separada=True,
+        tiene_3d=True,
+        tiene_sombreado_fondo=True,
+    )
+
+    assert isinstance(resultado, str), "Debe retornar una cadena de texto"
+    assert "3D" in resultado or "efectos" in resultado, "Debe detectar efectos 3D"
+    assert "leyenda" in resultado or "separada" in resultado, "Debe alertar sobre leyenda separada"
+    print("✅ test_diagnosticar_ruido passed")
+
+
+# ────────────────────────────────────────────
+# Prueba 4: Planificación de Atención Visual
+# ────────────────────────────────────────────
+def test_planificar_atencion():
+    narrativa = NarrativaDatos("Foco de Pérdidas")
+    resultado = narrativa.planificar_atencion(
+        elementos_enfoque=[
+            ("Línea de pérdidas", 5),
+            ("Línea de metas", 2),
+        ],
+        estrategia_color="gris_mas_uno",
+    )
+
+    assert isinstance(resultado, str), "Debe retornar una cadena de texto"
+    assert "pérdidas" in resultado.lower(), "Debe incluir el elemento de pérdidas"
+    print("✅ test_planificar_atencion passed")
+
+
+# ────────────────────────────────────────────
+# Prueba 5: Evaluación del Diseño
+# ────────────────────────────────────────────
+def test_evaluar_diseno():
+    narrativa = NarrativaDatos("Panel de Control")
+
+    # Evaluación positiva
+    resultado_bien = narrativa.evaluar_diseno(
+        tiene_titulo=True,
+        color_estrategico=True,
+        tiene_etiquetas=True,
+        sin_ruido=True,
+        flujo_narrativo=True,
+    )
+    assert isinstance(resultado_bien, str), "Debe retornar una cadena"
+
+    # Evaluación con fallos
+    resultado_mal = narrativa.evaluar_diseno(
+        tiene_titulo=False,
+        color_estrategico=False,
+    )
+    assert "❌" in resultado_mal, "La evaluación debe marcar los fallos con tachas"
+    print("✅ test_evaluar_diseno passed")
+
+
+# ────────────────────────────────────────────
+# Prueba 6: Construcción de la Historia
+# ────────────────────────────────────────────
+def test_construir_historia():
+    narrativa = NarrativaDatos("Proyecto de Retención")
+    resultado = narrativa.construir_historia(
+        protagonista="Equipo de Soporte",
+        desequilibrio="La pérdida de clientes creció un 20% este mes",
+        evidencia=["Tasa de respuesta lenta en tickets", "Aumento de quejas de facturación"],
+        llamado_accion="Autorizar contratación de 3 agentes de soporte",
+    )
+
+    assert isinstance(resultado, str), "Debe retornar una cadena"
+    assert "Soporte" in resultado, "Debe incluir el protagonista"
+    assert "pérdida" in resultado or "creció" in resultado, "Debe contener la descripción del conflicto"
+    print("✅ test_construir_historia passed")
+
+
+# ────────────────────────────────────────────
+# Prueba 7: Diagnóstico Completo
+# ────────────────────────────────────────────
+def test_diagnostico_completo():
+    narrativa = NarrativaDatos("Diagnóstico Anual")
+    resultado = narrativa.diagnostico_completo(calificaciones={
+        "contexto": {
+            "audiencia_clara": 5,
+            "accion_clara": 4,
+            "idea_fuerza_visible": 2,
+            "datos_sostienen_tesis": 5,
+        },
+        "seleccion_visual": {
+            "tipo_grafico_correcto": 4,
+            "evita_graficos_complejos": 5,
+            "linea_base_cero": 5,
+            "orden_logico": 4,
+        },
+    })
+
+    assert isinstance(resultado, str), "Debe retornar una cadena"
+    assert "Diagnóstico" in resultado, "El reporte debe incluir la palabra Diagnóstico"
+    assert "Mejoras" in resultado or "Sugerencias" in resultado, "Debe proponer planes de mejora"
+    print("✅ test_diagnostico_completo passed")
+
+
+# ────────────────────────────────────────────
+# Prueba 8: Rediseño de Gráficos (Makeover)
+# ────────────────────────────────────────────
+def test_redisenar_grafico():
+    narrativa = NarrativaDatos("Rediseño de Gráfico de Pastel")
+    resultado = narrativa.rediseñar_grafico(
+        problemas=[
+            "Se usó un gráfico circular para 8 categorías",
+            "Uso de colores muy llamativos y aleatorios",
+            "Leyenda separada a la derecha",
+        ]
+    )
+
+    assert isinstance(resultado, str), "Debe retornar una cadena"
+    assert len(resultado) > 50, "El reporte no debe estar vacío"
+    print("✅ test_redisenar_grafico passed")
+
+
+# ────────────────────────────────────────────
+# Prueba 9: Comparativa de Decisiones
+# ────────────────────────────────────────────
+def test_construir_comparativa_decisiones():
+    narrativa = NarrativaDatos("Decisión de Alojamiento")
+    resultado = narrativa.construir_comparativa_decisiones(
+        titulo="Evaluación de Proveedor",
+        opcion_a="Servidor Físico Local",
+        opcion_b="Nube Pública",
+        criterios=["Costo de mantenimiento", "Escalabilidad", "Seguridad física"],
+    )
+
+    assert isinstance(resultado, str), "Debe retornar una cadena"
+    assert "Nube Pública" in resultado, "Debe contener la opción B"
+    assert "Escalabilidad" in resultado, "Debe incluir los criterios de comparación"
+    print("✅ test_construir_comparativa_decisiones passed")
+
+
+# ────────────────────────────────────────────
+# Ejecución Principal
+# ────────────────────────────────────────────
+if __name__ == "__main__":
+    pruebas = [
+        test_crear_contexto,
+        test_recomendar_grafico,
+        test_diagnosticar_ruido,
+        test_planificar_atencion,
+        test_evaluar_diseno,
+        test_construir_historia,
+        test_diagnostico_completo,
+        test_redisenar_grafico,
+        test_construir_comparativa_decisiones,
+    ]
+
+    exitos = 0
+    fallos = 0
+    for prueba_func in pruebas:
+        try:
+            prueba_func()
+            exitos += 1
+        except Exception as err:
+            fallos += 1
+            print(f"❌ Falló {prueba_func.__name__}: {err}")
+
+    print(f"\n{'='*50}")
+    print(f"Resultado de Pruebas: {exitos} exitosas, {fallos} fallidas, {len(pruebas)} en total")
+    if fallos == 0:
+        print("🎉 ¡Excelente! Las 9 pruebas unitarias se ejecutaron con éxito en español.")
+    else:
+        print(f"⚠️ Se detectaron {fallos} fallas de aserción.")
+        sys.exit(1)
+
+=========================================================================
+ FIN DE ARCHIVO: tests/test_narrativa.py
+=========================================================================
+
+
